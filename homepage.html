@@ -3,143 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <script src="functionality.js"></script>
+  <!-- link to global style and css for homepage -->
+  <link rel="stylesheet" href="global_style.css">
+  <link rel="stylesheet" href="homepage.css">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
   integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
   crossorigin="anonymous">
+  <!-- title of the webpage and favicon -->
   <title>Map My Leuven</title>
   <link rel="icon" href="MAP%20MY%20LEUVEN.png">
-  <script>
-    //here comes Javascript for homepage
-    document.addEventListener('DOMContentLoaded', function() {
-      // Get carousel elements
-      const carousel = document.querySelector('.events-carousel');
-      const prevArrow = document.querySelector('.prev-arrow');
-      const nextArrow = document.querySelector('.next-arrow');
-      const dots = document.querySelectorAll('.dot');
-
-      // Get all event cards and calculate their width
-      const eventCards = document.querySelectorAll('.event-card');
-      const cardWidth = eventCards[0].offsetWidth + parseInt(window.getComputedStyle(eventCards[0]).marginLeft) * 2;
-
-      // Calculate how many cards to show per view based on screen width
-      function getCardsPerView() {
-        if (window.innerWidth < 768) {
-          return 1;
-        } else if (window.innerWidth < 992) {
-          return 2;
-        } else {
-          return 3;
-        }
-      }
-
-      // Calculate total number of slides
-      let cardsPerView = getCardsPerView();
-      let totalSlides = Math.ceil(eventCards.length / cardsPerView);
-      let currentSlide = 0;
-
-      // Function to update the carousel position
-      function updateCarousel() {
-        const scrollAmount = currentSlide * cardsPerView * cardWidth;
-        carousel.scrollTo({
-          left: scrollAmount,
-          behavior: 'smooth'
-        });
-
-        // Update active dot
-        dots.forEach((dot, index) => {
-          dot.classList.toggle('active', index === currentSlide);
-        });
-      }
-
-      // Previous arrow click handler
-      prevArrow.addEventListener('click', function() {
-        if (currentSlide > 0) {
-          currentSlide--;
-        } else {
-          currentSlide = totalSlides - 1; // Loop to the end
-        }
-        updateCarousel();
-      });
-
-      // Next arrow click handler
-      nextArrow.addEventListener('click', function() {
-        if (currentSlide < totalSlides - 1) {
-          currentSlide++;
-        } else {
-          currentSlide = 0; // Loop to the beginning
-        }
-        updateCarousel();
-      });
-
-      // Dot click handlers
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', function() {
-          currentSlide = index;
-          updateCarousel();
-        });
-      });
-
-      // Handle window resize
-      window.addEventListener('resize', function() {
-        const newCardsPerView = getCardsPerView();
-        if (newCardsPerView !== cardsPerView) {
-          cardsPerView = newCardsPerView;
-          totalSlides = Math.ceil(eventCards.length / cardsPerView);
-
-          // Make sure current slide is valid
-          if (currentSlide >= totalSlides) {
-            currentSlide = totalSlides - 1;
-          }
-
-          updateCarousel();
-        }
-      });
-
-      // Initialize carousel
-      updateCarousel();
-    });
-  </script>
+  <!-- link to global javascript file -->
+  <script src="global_javascript.js" defer></script>
 
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar">
-  <div class="nav-container">
-    <a href="homepage.html" class="logo">
-      <img src="MAP%20MY%20LEUVEN.png" alt="Logo">
-    </a>
-
-    <button class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <div class="nav-links" id="nav-links">
-      <a href="homepage.html" class="active">Home</a>
-      <a href="about.html">About</a>
-      <a href="event-map.html">Event map</a>
-      <a href="faq.html">FAQ</a>
-    </div>
-
-    <div class="right-section">
-      <a href="weather.html" class="weather-link">
-        <img src="https://cdn-icons-png.flaticon.com/512/1779/1779940.png" alt="Weather" class="weather-icon">
-        <span>Check Weather</span>
-      </a>
-
-      <div class="search-container">
-        <input type="text" placeholder="Search...">
-        <button type="submit">
-          <i class="fas fa-search search-icon">🔍</i>
-        </button>
-      </div>
-    </div>
-  </div>
-</nav>
-
-
+<!-- navigation bar -->
+<div id="navbar-placeholder"></div>
 
 <!-- Intro Section -->
 <section class="intro">
@@ -152,7 +32,7 @@
 
         </p>
       <div class="intro-buttons">
-        <a href="#" class="btn btn-primary">Event Map</a>
+        <a href="event-map.html" class="btn btn-primary">Event Map</a>
         <a href="#" class="btn btn-secondary">Login</a>
       </div>
     </div>
@@ -162,7 +42,6 @@
   </div>
 </section>
 
-<!-- Events Section -->
 <!-- Upcoming Events Section -->
 <section class="events-section">
   <div class="events-container">
@@ -178,8 +57,8 @@
           <div class="event-image">
             <img src="beiaardcantus.avif" alt="Beiaardcantus">
             <div class="event-date">
-              <span class="date-day">25</span>
-              <span class="date-month">MAR</span>
+              <span class="date-day">14</span>
+              <span class="date-month">MAY</span>
             </div>
           </div>
           <div class="event-info">
@@ -189,11 +68,11 @@
                                 <i class="fas fa-map-marker-alt">📍</i> Ladeuzeplein
                             </span>
               <span class="event-time">
-                                <i class="fas fa-clock">🕒</i> 19:00
+                                <i class="fas fa-clock">🕒</i> 18:00
                             </span>
             </div>
             <p class="event-description">Join the traditional student singing event at the iconic Ladeuzeplein.</p>
-            <a href="#" class="event-link">Learn More</a>
+            <a href="beiaard.html" class="event-link">Learn More</a>
           </div>
         </div>
 
@@ -342,139 +221,5 @@
     </div>
   </div>
 </section>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Get elements
-    const mapViewBtn = document.getElementById('map-view-btn');
-    const listViewBtn = document.getElementById('list-view-btn');
-    const mapPlaceholder = document.getElementById('map-placeholder');
-    const eventList = document.getElementById('event-list');
-    const applyFiltersBtn = document.getElementById('apply-filters');
-    const resetFiltersBtn = document.getElementById('reset-filters');
-
-    // Toggle between map and list views
-    mapViewBtn.addEventListener('click', function() {
-      mapPlaceholder.style.display = 'flex';
-      eventList.style.display = 'none';
-      mapViewBtn.classList.add('active');
-      listViewBtn.classList.remove('active');
-    });
-
-    listViewBtn.addEventListener('click', function() {
-      mapPlaceholder.style.display = 'none';
-      eventList.style.display = 'block';
-      listViewBtn.classList.add('active');
-      mapViewBtn.classList.remove('active');
-
-      // Populate event list (this would normally fetch from an API)
-      populateEventList();
-    });
-
-    // Apply filters
-    applyFiltersBtn.addEventListener('click', function() {
-      const category = document.getElementById('category-filter').value;
-      const date = document.getElementById('date-filter').value;
-      const cost = document.getElementById('cost-filter').value;
-
-      // This would normally filter the map markers and/or event list
-      console.log('Filters applied:', { category, date, cost });
-
-      // Example of filtering events
-      filterEvents(category, date, cost);
-    });
-
-    // Reset filters
-    resetFiltersBtn.addEventListener('click', function() {
-      document.getElementById('category-filter').value = 'all';
-      document.getElementById('date-filter').value = 'all';
-      document.getElementById('cost-filter').value = 'all';
-
-      // Reset any applied filters
-      filterEvents('all', 'all', 'all');
-    });
-
-    // Function to populate event list
-    function populateEventList() {
-      // This would normally fetch events from an API
-      const events = [
-        { title: 'Beiaardcantus', date: '2025-03-25', category: 'student', cost: 'paid', location: 'Ladeuzeplein' },
-        { title: '600 years KU Leuven', date: '2025-04-10', category: 'academic', cost: 'free', location: 'University Hall' },
-        { title: 'The Longest Day', date: '2025-06-21', category: 'culture', cost: 'student', location: 'City Center' }
-      ];
-
-      // Clear existing events
-      eventList.innerHTML = '';
-
-      if (events.length === 0) {
-        eventList.innerHTML = '<p class="no-events">No events match your criteria</p>';
-        return;
-      }
-
-      // Create event items
-      events.forEach(event => {
-        const eventItem = document.createElement('div');
-        eventItem.className = 'event-item';
-        eventItem.innerHTML = `
-                    <h3>${event.title}</h3>
-                    <p><strong>Date:</strong> ${formatDate(event.date)}</p>
-                    <p><strong>Category:</strong> ${capitalizeFirstLetter(event.category)}</p>
-                    <p><strong>Cost:</strong> ${formatCost(event.cost)}</p>
-                    <p><strong>Location:</strong> ${event.location}</p>
-                    <button class="event-details-btn">View Details</button>
-                `;
-        eventList.appendChild(eventItem);
-      });
-
-      // Add event item styles
-      const style = document.createElement('style');
-      style.textContent = `
-                .event-item {
-                    padding: 15px;
-                    border-bottom: 1px solid #eee;
-                    margin-bottom: 15px;
-                }
-                .event-item:last-child {
-                    border-bottom: none;
-                    margin-bottom: 0;
-                }
-                .event-item h3 {
-                    margin-top: 0;
-                    color: #4285c7;
-                }
-                .event-details-btn {
-                    background-color: #4285c7;
-                    color: white;
-                    border: none;
-                    padding: 5px 10px;
-                    border-radius: 3px;
-                    cursor: pointer;
-                    margin-top: 10px;
-                }
-                .no-events {
-                    text-align: center;
-                    color: #777;
-                    font-style: italic;
-                }
-            `;
-      document.head.appendChild(style);
-    }
-
-    // Function to filter events
-    function filterEvents(category, date, cost) {
-      // This would normally filter map markers and event list
-      console.log('Filtering events by:', { category, date, cost });
-
-      // If in list view, update the displayed events
-      if (eventList.style.display === 'block') {
-        populateEventList();
-      }
-    }
-
-    // Helper functions
-    function formatDate(dateString) {
-      const options = { year: 'numeric', month:
-</script>
-
 </body>
 </html>

@@ -1,0 +1,195 @@
+/* this is the css file with the global style for all the webpages */
+/* default style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+/* Common Button Styles */
+.btn {
+    padding: 10px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    background-color: #4285c7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-end;
+}
+
+.btn-secondary {
+    padding: 10px 20px;
+    background-color: white;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-end;
+}
+
+/* Common Section Title Styles */
+.section-title, .more-events-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: white;
+    background-color: #4285c7;
+    padding: 15px 0;
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 5px;
+    background-color: #2a5298;
+    border-radius: 5px;
+}
+
+
+/* Filter Bar Styles - Common for map page and possibly other pages */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    flex: 1;
+}
+
+.filter-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.filter-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.filter-button {
+    padding: 10px 20px;
+    background-color: #4285c7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    align-self: flex-end;
+}
+
+.filter-button.reset {
+    background-color: #f44336;
+}
+
+.filter-button:hover {
+    opacity: 0.9;
+}
+
+
+/* Common Responsive Media Queries */
+@media (max-width: 900px) {
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a {
+        padding: 6px 10px;
+        font-size: 0.9rem;
+    }
+
+    .search-container input {
+        width: 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #2a5298;
+        flex-direction: column;
+        padding: 20px;
+        gap: 15px;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.3s ease;
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        transform: scaleY(1);
+    }
+
+    .nav-links a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .right-section {
+        gap: 10px;
+    }
+
+    .weather-link span {
+        display: none;
+    }
+
+    .weather-link {
+        padding: 8px;
+    }
+
+    .weather-icon {
+        margin-right: 0;
+    }
+
+    .search-container input {
+        width: 120px;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+}
