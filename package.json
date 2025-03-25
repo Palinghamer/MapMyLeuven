@@ -1,10 +1,27 @@
 {
-  "name": "Work Space Group Project",
+  "name": "work-space-group-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "A web application that aggregates (Facebook) events happening in Leuven and displays them on a map\r #lalalalala\r #giuluhihiiu",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "private": true
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Palinghamer/MapMyLeuven.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Palinghamer/MapMyLeuven/issues"
+  },
+  "homepage": "https://github.com/Palinghamer/MapMyLeuven#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.13.0"
+  }
 }
