@@ -15,7 +15,10 @@
   <link rel="icon" href="MAP%20MY%20LEUVEN.png">
   <!-- link to global javascript file -->
   <script src="global_javascript.js" defer></script>
-
+  <link
+          rel="stylesheet"
+          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  />
 </head>
 <body>
 <!-- navigation bar -->
@@ -206,9 +209,7 @@
     </div>
 
     <!-- Map Placeholder (to be replaced with Google Maps) -->
-    <div id="map-placeholder">
-      <p>Google Maps will be implemented here</p>
-    </div>
+    <div id="map"></div>
 
     <!-- Event List (Alternative view to the map) -->
     <div class="event-list-toggle">
@@ -221,5 +222,8 @@
     </div>
   </div>
 </section>
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="map.js" defer></script>
 </body>
 </html>
