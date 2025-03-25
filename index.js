@@ -7,7 +7,7 @@ const eventRoutes = require("./routes/events");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use("./node_modules/routes/events", eventRoutes);
+app.use("/events", eventRoutes);
 
 mongoose.connect(process.env.MONGO_URI, {
     // options if needed
