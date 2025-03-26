@@ -1,11 +1,128 @@
+<!-- This is the HTML page for the "about" page-->
 <!DOCTYPE html>
-// This is the HTML page for the "FAQ" page
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>FAQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to global style and css for FAQ page -->
+    <link rel="stylesheet" href="global_style.css">
+    <link rel="stylesheet" href="faq.css">
+    <!-- Title and favicon -->
+    <title>FAQ - Map My Leuven</title>
+    <link rel="icon" href="MAP%20MY%20LEUVEN.png">
+    <!-- link to navigation bar -->
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
 </head>
 <body>
+<!-- placeholder for where the navigation bar will come -->
+<div id="navbar-placeholder"></div>
 
+<!-- FAQ Header -->
+<section class="faq-header">
+    <div class="faq-header-container">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about Map My Leuven</p>
+    </div>
+</section>
+
+<!-- FAQ Content -->
+<section class="faq-content">
+    <div class="faq-container">
+        <!-- FAQ Item 1 -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>What is Map My Leuven?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Map My Leuven is an interactive platform that helps citizens and tourists discover events happening in Leuven. Our platform features an interactive map, comprehensive event listings, and tools to help you plan your visits.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 2 -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>How do I find events on the map?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>You can access our interactive map from the homepage or by clicking on "Event Map" in the navigation bar. From there, you can see all events plotted on the map. You can filter events by category, date, and cost to find exactly what you're looking for.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 3 -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Can I add my own event to Map My Leuven?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Yes! We welcome event submissions from the community. To add your event, you'll need to create an account and submit your event details through our online form. All submissions are reviewed before being added to the map.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 4 -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>Is Map My Leuven available as a mobile app?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Currently, Map My Leuven is only available as a mobile-responsive website that works well on all devices.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 5 -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>How does the weather feature work?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>Our weather feature provides current weather conditions in Leuven and recommendations on whether you'll need a jacket. You can also check the forecast for specific dates when planning to attend events. This helps you prepare appropriately for outdoor activities.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Item 6 -->
+        <div class="faq-item">
+            <div class="faq-question">
+                <h3>How can I contact the Map My Leuven team?</h3>
+                <span class="faq-toggle">+</span>
+            </div>
+            <div class="faq-answer">
+                <p>If you have questions, suggestions, or feedback, you can reach us via email at contact@mapmyleuven.be. We welcome your input and are committed to improving the platform based on user needs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ toggle functionality
+        const faqQuestions = document.querySelectorAll('.faq-question');
+
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                // Toggle active class on the parent item
+                const faqItem = question.parentNode;
+                faqItem.classList.toggle('active');
+
+                // Update the toggle symbol
+                const toggleSymbol = question.querySelector('.faq-toggle');
+                if (faqItem.classList.contains('active')) {
+                    toggleSymbol.textContent = '−';
+                } else {
+                    toggleSymbol.textContent = '+';
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>
