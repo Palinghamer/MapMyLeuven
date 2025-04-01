@@ -1,0 +1,79 @@
+<!-- This is the HTML page for the "about" page-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link to global style and css for about page -->
+    <link rel="stylesheet" href="global_style.css">
+    <link rel="stylesheet" href="about.css">
+    <!-- Title and favicon -->
+    <title>About - Map My Leuven</title>
+    <link rel="icon" href="MAP%20MY%20LEUVEN.png">
+    <!-- link to navigation bar -->
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
+</head>
+<body>
+<!-- placeholder for where the navigation bar will come -->
+<div id="navbar-placeholder"></div>
+
+<!-- About Hero Section -->
+<section class="about-hero">
+    <div class="about-hero-container">
+        <h1>About Map My Leuven</h1>
+        <p>A Digital Humanities initiative</p>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+    <div class="mission-container">
+        <div class="mission-content">
+            <h2>Our Mission</h2>
+            <p>Map My Leuven aims to put Leuven's events more prominently on the map, creating a centralized platform where both citizens and tourists can discover everything happening in the city.</p>
+            <p>Whether you're a long-time resident, a student new to the area, or a visitor exploring Leuven for the first time, our interactive map and comprehensive event listings make it easy to connect with local culture, entertainment, and community gatherings.</p>
+        </div>
+        </div>
+        <div class="mission-image">
+            <img src="Leuven%20Atmosphere%20Photo.jpg" alt="Leuven Atmosphere Photo">
+        </div>
+    </div>
+</section>
+
+<!-- Project Section -->
+<section class="project-section">
+    <div class="project-container">
+        <div class="project-content">
+            <h2>About the Project</h2>
+            <p>Map My Leuven was developed by five enthusiastic students as part of the Web Information Systems course in the Advanced Master in Digital Humanities program at KU Leuven.</p>
+            <p>Our platform features:</p>
+            <ul class="project-features">
+                <li>Interactive map of events throughout Leuven</li>
+                <li>User ability to add events to the map</li>
+                <li>Weather integration to help plan your outings</li>
+                <li>Category and date filters to find exactly what you're looking for</li>
+                <li>Mobile-responsive design for on-the-go access</li>
+            </ul>
+        </div>
+        <div class="project-image">
+            <img src="KU%20Leuven%20logo.png" alt="KU Leuven Logo">
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section">
+    <div class="contact-container">
+        <h2>Get in Touch</h2>
+        <p>Have questions, suggestions, or problems with adding your event to our platform? We'd love to hear from you!</p>
+        <a href="mailto:contact@mapmyleuven.be" class="contact-button">Contact Us</a>
+    </div>
+</section>
+</body>
+</html>

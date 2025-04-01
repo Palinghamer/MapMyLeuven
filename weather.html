@@ -1,0 +1,124 @@
+<!-- This is the HTML page for the "weather" page-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- link to global style and css for weather page -->
+    <link rel="stylesheet" href="global_style.css">
+    <link rel="stylesheet" href="weather.css">
+    <!-- title of the webpage and favicon -->
+    <title>Weather - Map My Leuven</title>
+    <link rel="icon" href="MAP%20MY%20LEUVEN.png">
+    <!-- link to navigation bar -->
+    <script>
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+    </script>
+
+
+</head>
+<body>
+<!-- placeholder for where the navigation bar will come -->
+<div id="navbar-placeholder"></div>
+
+<!-- Weather Section -->
+<section class="weather-section">
+    <div class="weather-container">
+        <h1>Check the Weather in Leuven!</h1>
+
+        <div class="weather-card">
+            <div class="weather-header">
+                <div class="location">
+                    <h2>Leuven, Belgium</h2>
+                    <p class="date" id="current-date">Loading date...</p>
+                </div>
+                <div class="weather-icon-container">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1779/1779940.png" alt="Weather Icon" class="weather-icon-img">
+                </div>
+            </div>
+
+            <div class="weather-content">
+                <div class="weather-info" id="weather-info">
+                    <p class="weather-message">Click the button below to check today's weather in Leuven</p>
+                </div>
+
+                <button id="check-weather-btn" class="check-weather-btn">Check Weather</button>
+
+                <div class="weather-details" id="weather-details">
+                    <!-- Weather details will appear here after API call -->
+                </div>
+            </div>
+        </div>
+
+        <div class="weather-forecast">
+            <h3>Events Weather Planning</h3>
+            <p>Planning to attend an event? Check the weather forecast to prepare accordingly:</p>
+
+            <div class="event-weather-search">
+                <input type="date" id="event-date" min="2025-03-25">
+                <button id="check-event-weather-btn">Check Event Weather</button>
+            </div>
+
+            <div class="event-weather-result" id="event-weather-result">
+                <!-- Event weather forecast will appear here -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Set current date
+    document.addEventListener('DOMContentLoaded', function() {
+        // Load navbar
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+            });
+
+        // Set current date display
+        const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        const today = new Date();
+        document.getElementById('current-date').textContent = today.toLocaleDateString(undefined, dateOptions);
+
+        // Set minimum date for event weather to today
+        document.getElementById('event-date').valueAsDate = today;
+
+        // Weather check button
+        document.getElementById('check-weather-btn').addEventListener('click', function() {
+            // Show a placeholder message when button is clicked
+            document.getElementById('weather-info').innerHTML =
+                '<p class="weather-message">Weather API integration coming soon!</p>';
+
+            // TO BE IMPLEMENTED BY GIULIA:
+            // Replace the above with an actual API call to get weather data
+            // The API should return:
+            // - Current temperature
+            // - Weather condition (sunny, cloudy, etc.)
+            // - Whether a jacket is needed
+        });
+
+        // Event weather check button
+        document.getElementById('check-event-weather-btn').addEventListener('click', function() {
+            // Get the selected date
+            const eventDate = document.getElementById('event-date').value;
+
+            // Show the result container with a placeholder message
+            const eventWeatherResult = document.getElementById('event-weather-result');
+            eventWeatherResult.innerHTML = '<p>Weather forecast API integration coming soon!</p>';
+            eventWeatherResult.style.display = 'block';
+
+            // TO BE IMPLEMENTED BY GIULIA:
+            // Make an API call using the selected date (eventDate)
+            // The API should return forecast data for the selected date
+            // Display the results in the eventWeatherResult element
+        });
+    });
+</script>
+
+</body>
+</html>
