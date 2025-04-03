@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- link to global style and css for weather page -->
     <link rel="stylesheet" href="global_style.css">
+    <script type="text/javascript" src="weathercode.js"></script>
+    <!--This one above is the js file with all the instructions for the current weather -->
     <link rel="stylesheet" href="weather.css">
     <!-- title of the webpage and favicon -->
     <title>Weather - Map My Leuven</title>
@@ -36,14 +38,11 @@
                     <h2>Leuven, Belgium</h2>
                     <p class="date" id="current-date">Loading date...</p>
                 </div>
-                <div class="weather-icon-container">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1779/1779940.png" alt="Weather Icon" class="weather-icon-img">
-                </div>
+
             </div>
 
             <div class="weather-content">
-                <div class="weather-info" id="weather-info">
-                    <p class="weather-message">Click the button below to check today's weather in Leuven</p>
+                <div class="weather-info" id="weather-info-canvas">
                 </div>
 
                 <button id="check-weather-btn" class="check-weather-btn">Check Weather</button>
@@ -90,11 +89,27 @@
 
         // Weather check button
         document.getElementById('check-weather-btn').addEventListener('click', function() {
-            // Show a placeholder message when button is clicked
-            document.getElementById('weather-info').innerHTML =
-                '<p class="weather-message">Weather API integration coming soon!</p>';
+        // Show a placeholder message when button is clicked
+        loadWeatherData()
 
-            // TO BE IMPLEMENTED BY GIULIA:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        // TO BE IMPLEMENTED BY GIULIA:
             // Replace the above with an actual API call to get weather data
             // The API should return:
             // - Current temperature

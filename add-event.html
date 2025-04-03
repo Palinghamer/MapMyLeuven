@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="MAP%20MY%20LEUVEN.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Event</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+  <style>
+    #drop-area.dragover {
+      background-color: #e3f2fd;
+      border-color: #2a5298;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Blue header bar -->
+<div style="background-color: #4285c7;" class="text-white text-center py-4 mb-4">
+  <a href="homepage.html">
+    <img src="MAP%20MY%20LEUVEN.png" alt="Map My Leuven Logo" style="max-height: 80px;">
+  </a>
+  <h1 class="mt-3">Share your event</h1>
+</div>
+
+<!-- Main form container -->
+<div class="container mb-5">
+  <form id="event-form">
+    <div class="form-group">
+      <label for="eventName">Event Name</label>
+      <input type="text" class="form-control" id="eventName" required>
+    </div>
+    <div class="form-group">
+      <label for="eventDate">Date</label>
+      <input type="date" class="form-control" id="eventDate" required>
+    </div>
+    <div class="form-group">
+      <label for="eventTime">Time</label>
+      <input type="time" class="form-control" id="eventTime" required>
+    </div>
+    <div class="form-group">
+      <label for="eventLocation">Location</label>
+      <input type="text" class="form-control" id="eventLocation" required>
+    </div>
+    <div class="form-group">
+      <label for="eventDescription">Description</label>
+      <textarea class="form-control" id="eventDescription" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="eventImage" class="d-block">Upload Event Image</label>
+      <div id="drop-area" class="border border-primary rounded p-4 text-center" style="cursor: pointer;">
+        <p>📷 Drag & drop an image here, or click to select</p>
+        <input type="file" id="eventImage" accept="image/*" style="display: none;">
+        <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; margin-top: 15px; border-radius: 8px;" />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Event</button>
+  </form>
+</div>
+
+<script>
+  // ✅ Prevent browser from opening file on drop anywhere
+  window.addEventListener("dragover", function(e) {
+    e.preventDefault();
+  }, false);
+
+  window.addEventListener("drop", function(e) {
+    e.preventDefault();
+  }, false);
+
+  // ✅ Drag and drop functionality
+  const dropArea = document.getElementById('drop-area');
+  const fileInput = document.getElementById('eventImage');
+  const preview = document.getElementById('imagePreview');
+
+  // Click to open file dialog
+  dropArea.addEventListener('click', () => fileInput.click());
+
+  // Handle file selection from input
+  fileInput.addEventListener('change', handleFile);
+
+  // Handle drag over
+  dropArea.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropArea.classList.add('dragover');
+  });
+
+  dropArea.addEventListener('dragleave', () => {
+    dropArea.classList.remove('dragover');
+  });
+
+  // Handle drop
+  dropArea.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropArea.classList.remove('dragover');
+
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      fileInput.files = e.dataTransfer.files; // set dropped file to input
+      handleFile();
+    }
+  });
+
+  // ✅ Preview image
+  function handleFile() {
+    const file = fileInput.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ✅ Form submission
+  document.getElementById('event-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const eventData = {
+      name: document.getElementById('eventName').value,
+      date: document.getElementById('eventDate').value,
+      time: document.getElementById('eventTime').value,
+      location: document.getElementById('eventLocation').value,
+      description: document.getElementById('eventDescription').value
+      // Image will be handled separately later
+    };
+    console.log("Submitted Event:", eventData);
+    alert("Event submitted! (not yet saved to DB)");
+  });
+</script>
+</body>
+</html>

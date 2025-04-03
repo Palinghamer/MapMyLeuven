@@ -69,9 +69,15 @@
     object-fit: contain;
 }
 
+
+/* This is the part for the current weather message */
 .weather-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #666;
     padding: 30px;
-    text-align: center;
+
 }
 
 .weather-info {
