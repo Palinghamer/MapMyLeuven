@@ -1,15 +1,20 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const EventSchema = new mongoose.Schema({
     title: String,
     date: String,
-    location: String,
+    time: String,
+    location: {
+        address: String,
+        coordinates: {
+            type: [Number] // [longitude, latitude]
+        }
+    },
     description: String,
-    price: Number,
-    coordinates: {
-        type: { type: String, enum: ["Point"], default: "Point" },
-        coordinates: { type: [Number], required: true }
-    }
-});
+    imageUrl: String
+}, { timestamps: true });
 
-module.exports = mongoose.model("event", EventSchema);
+// ✅ Define the geospatial index just once here
+EventSchema.index({ "location.coordinates": "2dsphere" });
+
+module.exports = mongoose.model('Event', EventSchema);

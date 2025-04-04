@@ -115,19 +115,44 @@
   }
 
   // ✅ Form submission
-  document.getElementById('event-form').addEventListener('submit', function(e) {
+  document.getElementById('event-form').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const eventData = {
-      name: document.getElementById('eventName').value,
-      date: document.getElementById('eventDate').value,
-      time: document.getElementById('eventTime').value,
-      location: document.getElementById('eventLocation').value,
-      description: document.getElementById('eventDescription').value
-      // Image will be handled separately later
-    };
-    console.log("Submitted Event:", eventData);
-    alert("Event submitted! (not yet saved to DB)");
+
+    // Combine date and time if you want a single datetime field
+    const eventDateTime = `${document.getElementById('eventDate').value}T${document.getElementById('eventTime').value}`;
+
+    const formData = new FormData();
+    formData.append("title", document.getElementById('eventName').value);
+    formData.append("date", eventDateTime); // or keep separate date/time
+    formData.append("time", document.getElementById('eventTime').value);
+    formData.append("location", document.getElementById('eventLocation').value);
+    formData.append("description", document.getElementById('eventDescription').value);
+
+    const file = document.getElementById('eventImage').files[0];
+    if (file) formData.append("image", file);
+
+    try {
+      const response = await fetch("http://localhost:3000/events", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit event');
+      }
+
+      const data = await response.json();
+      console.log("Event added:", data);
+      alert("Event successfully submitted!");
+      this.reset(); // Clear the form
+      document.getElementById('imagePreview').style.display = 'none'; // Hide preview
+    } catch (error) {
+      console.error("Error adding event:", error);
+      alert(error.message);
+    }
   });
+
 </script>
 </body>
 </html>
