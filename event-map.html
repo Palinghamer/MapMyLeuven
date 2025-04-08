@@ -1,11 +1,78 @@
 <!DOCTYPE html>
-// This is the HTML page for the "event map" page
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Event Map</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Map My Leuven</title>
+    <link rel="icon" href="MAP%20MY%20LEUVEN.png" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="global_style.css" />
+    <link rel="stylesheet" href="homepage.css" />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Scripts -->
+    <script src="global_javascript.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="event-map.js" defer></script> <!-- ✅ Our correct JS file -->
 </head>
 <body>
+
+<!-- Navigation Bar -->
+<div id="navbar-placeholder"></div>
+
+<!-- Map Section -->
+<section class="map-section">
+    <div class="map-container">
+        <h2 class="section-title">Event Map</h2>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-group">
+                <label for="category-filter">Category</label>
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="student">Student</option>
+                    <option value="sports">Sports</option>
+                    <option value="kids">Kids</option>
+                    <option value="culture">Culture</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="date-filter">Date</label>
+                <select id="date-filter">
+                    <option value="all">All Dates</option>
+                    <option value="today">Today</option>
+                    <option value="tomorrow">Tomorrow</option>
+                    <option value="week">This Week</option>
+                    <option value="month">This Month</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="cost-filter">Cost</label>
+                <select id="cost-filter">
+                    <option value="all">All Prices</option>
+                    <option value="free">Free</option>
+                    <option value="paid">Paid</option>
+                    <option value="student">Student Discount</option>
+                </select>
+            </div>
+
+            <button id="apply-filters" class="filter-button">Apply Filters</button>
+            <button id="reset-filters" class="filter-button reset">Reset</button>
+        </div>
+
+        <!-- Map -->
+        <div id="map"></div>
+    </div>
+</section>
 
 </body>
 </html>

@@ -304,9 +304,11 @@
 }
 
 .map-container {
-    width: 80%;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
+    padding: 0 20px;
 }
+
 
 .map-container h2 {
     font-size: 2rem;
