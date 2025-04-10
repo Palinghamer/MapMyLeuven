@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     try {
         // Fetch events from the backend
-        const response = await fetch("https://mapmyleuven.onrender.com");
+        const response = await fetch("https://map-my-leuven-backend.onrender.com/events");
         const events = await response.json();
         console.log("Fetched events:", events);
 
