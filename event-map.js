@@ -1,54 +1,47 @@
-// event-map.js
+document.addEventListener("DOMContentLoaded", async () => {
+    // Initialize the map
+    const map = L.map("map").setView([50.879, 4.7], 13); // Leuven center
 
-document.addEventListener("DOMContentLoaded", () => {
-    const mapElement = document.getElementById("map");
-    if (!mapElement) return;
-
-    // Set height to fill screen
-    mapElement.style.height = "90vh";
-
-    // Initialize map
-    const map = L.map("map").setView([50.8798, 4.7005], 14);
-
-    // Add OSM tiles
+    // Add OpenStreetMap tile layer
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        attribution: "© OpenStreetMap contributors"
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    // Sample static events
-    const events = [
-        {
-            name: "Beiaardcantus",
-            location: [50.8788, 4.7010],
-            date: "May 14",
-            time: "18:00",
-            description: "Join the traditional student singing event at Ladeuzeplein."
-        },
-        {
-            name: "KU Leuven 600",
-            location: [50.8784, 4.7003],
-            date: "Apr 10",
-            time: "10:00",
-            description: "Celebrate 600 years of academic excellence."
-        },
-        {
-            name: "The Longest Day",
-            location: [50.8754, 4.7060],
-            date: "June 21",
-            time: "All Day",
-            description: "Summer solstice celebrations throughout the city."
-        }
-    ];
+    try {
+        // Fetch events from the backend
+        const response = await fetch("http://localhost:3000/events");
+        const events = await response.json();
+        console.log("Fetched events:", events);
 
-    // Add markers
-    events.forEach(event => {
-        const marker = L.marker(event.location).addTo(map);
-        marker.bindPopup(`
-      <div style="min-width: 200px;">
-        <h5>${event.name}</h5>
-        <p><strong>${event.date}</strong> at ${event.time}</p>
-        <p>${event.description}</p>
-      </div>
-    `);
-    });
+        events.forEach(event => {
+            console.log("Raw event:", event);
+
+            const coords = event.location?.coordinates;
+
+            if (
+                coords &&
+                Array.isArray(coords) &&
+                coords.length === 2 &&
+                !isNaN(coords[0]) &&
+                !isNaN(coords[1])
+            ) {
+                const [lng, lat] = coords; // GeoJSON order
+                console.log(`Placing marker at lat: ${lat}, lng: ${lng}`);
+
+                L.marker([lat, lng]) // Leaflet wants [lat, lng]
+                    .addTo(map)
+                    .bindPopup(`
+                <strong>${event.title || "Untitled Event"}</strong><br/>
+                ${event.date || "No date provided"}<br/>
+                ${event.location.address || ""}
+            `);
+            } else {
+                console.warn("Invalid coordinates for event:", coords);
+            }
+        });
+
+    } catch (err) {
+        console.error("Error fetching events:", err);
+    }
 });
