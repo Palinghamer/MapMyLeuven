@@ -96,19 +96,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
                         // TO BE IMPLEMENTED BY GIULIA:
             // Replace the above with an actual API call to get weather data
             // The API should return:
@@ -121,11 +108,15 @@
         document.getElementById('check-event-weather-btn').addEventListener('click', function() {
             // Get the selected date
             const eventDate = document.getElementById('event-date').value;
+            const apiDate = eventDate + "T04:00:00Z"; //convert the date to the format required for the API
+
 
             // Show the result container with a placeholder message
             const eventWeatherResult = document.getElementById('event-weather-result');
-            eventWeatherResult.innerHTML = '<p>Weather forecast API integration coming soon!</p>';
+            eventWeatherResult.innerHTML = '<p>Weather forecast API integration coming soon!</p>'; //put here the result of the api call
             eventWeatherResult.style.display = 'block';
+
+            fetchWeatherData(apiDate);
 
             // TO BE IMPLEMENTED BY GIULIA:
             // Make an API call using the selected date (eventDate)

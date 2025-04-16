@@ -1,3 +1,5 @@
+//function for the current weather
+
 function loadWeatherData(){
     const button = document.querySelector('button'); //I take the button
     button.disabled = true; //disable the button
@@ -65,3 +67,6 @@ function loadWeatherData(){
 function empty(element){
     element.innerHTML="";
 }
+
+
+//function for the future weather (+ 5 days); not working
