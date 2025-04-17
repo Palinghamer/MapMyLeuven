@@ -60,6 +60,9 @@
             <div class="event-weather-search">
                 <input type="date" id="event-date" min="2025-03-25">
                 <button id="check-event-weather-btn">Check Event Weather</button>
+
+                <button id="weatherTomorrow">Get Weather Tomorrow</button>
+
             </div>
 
             <div class="event-weather-result" id="event-weather-result">
@@ -96,19 +99,19 @@
 
 
 
-                        // TO BE IMPLEMENTED BY GIULIA:
-            // Replace the above with an actual API call to get weather data
-            // The API should return:
-            // - Current temperature
-            // - Weather condition (sunny, cloudy, etc.)
-            // - Whether a jacket is needed
+
+
         });
 
-        // Event weather check button
+
+
+
+
+            // Event weather check button
         document.getElementById('check-event-weather-btn').addEventListener('click', function() {
             // Get the selected date
             const eventDate = document.getElementById('event-date').value;
-            const apiDate = eventDate + "T04:00:00Z"; //convert the date to the format required for the API
+
 
 
             // Show the result container with a placeholder message
@@ -116,7 +119,7 @@
             eventWeatherResult.innerHTML = '<p>Weather forecast API integration coming soon!</p>'; //put here the result of the api call
             eventWeatherResult.style.display = 'block';
 
-            fetchWeatherData(apiDate);
+
 
             // TO BE IMPLEMENTED BY GIULIA:
             // Make an API call using the selected date (eventDate)

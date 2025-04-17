@@ -48,16 +48,6 @@ function loadWeatherData(){
                 output += "Wear a heavy jacket! It is going to be very cold. "
             }
 
-
-
-
-
-
-
-
-
-
-
                 // Result output
             document.getElementById('weather-info-canvas').innerHTML = output
 
@@ -67,6 +57,3 @@ function loadWeatherData(){
 function empty(element){
     element.innerHTML="";
 }
-
-
-//function for the future weather (+ 5 days); not working
