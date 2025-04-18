@@ -40,11 +40,7 @@ class OpenWeatherMap {
         if (locationJSON === {}) {
             return;
         }
-        //prova
-        //if (Object.keys(locationJSON).length === 0){
-            //return;
-        //}
-        //prova
+
 
         // Make an API call
         const url = `https://api.openweathermap.org/data/2.5/weather?lat=${locationJSON.lat}&lon=${locationJSON.lon}&units=metric&appid=${appid}`;
@@ -129,6 +125,7 @@ class TomorrowIO {
 
                 const timelines = data.timelines;
                 const dailyWeathers = timelines.daily;
+
                 //we get the forecast as a list
 
 
@@ -139,6 +136,16 @@ class TomorrowIO {
                     const weatherDate = dailyWeather.time.split('T')[0];
                     if (weatherDate === date) {
                         result = dailyWeather;
+                        const cloudCeiling = dailyWeather.values.cloudCeilingAvg;
+                        const temperature = dailyWeather.values.temperatureAvg;
+
+                        const eventWeatherResult = document.getElementById('event-weather-result');
+                        eventWeatherResult.innerHTML = `
+                            <p><strong>📅 Date:</strong> ${weatherDate}</p>
+                            <p><strong>☁️ Cloud Ceiling Avg:</strong> ${cloudCeiling} m</p>
+                            <p><strong>🌡 Temperature Avg:</strong> ${temperature} °C</p>
+                        `;
+                        eventWeatherResult.style.display = "flex";
                         break;
                     }
                 }
