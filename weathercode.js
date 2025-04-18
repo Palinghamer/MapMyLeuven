@@ -37,13 +37,13 @@ class OpenWeatherMap {
 
         // Get city's location
         const locationJSON = await this.getCurrentCoordinatesBy(city);
-        //if (locationJSON === {}) {
-            //return;
-        //}
-        //prova
-        if (Object.keys(locationJSON).length === 0){
+        if (locationJSON === {}) {
             return;
         }
+        //prova
+        //if (Object.keys(locationJSON).length === 0){
+            //return;
+        //}
         //prova
 
         // Make an API call

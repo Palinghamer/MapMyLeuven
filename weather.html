@@ -122,7 +122,8 @@
             const specificDateWeather = await tomorrowIO.loadWeatherDataBy(eventDate);
 
             if (specificDateWeather === undefined) {
-                eventWeatherResult.innerHTML = `<span>We are unable to provide the weather forecast for ${eventDate}</span>`
+                eventWeatherResult.innerHTML = `<span>We are unable to provide the weather forecast for ${eventDate}</span>`;
+                return;
             }
 
             eventWeatherResult.innerHTML = JSON.stringify(specificDateWeather);
