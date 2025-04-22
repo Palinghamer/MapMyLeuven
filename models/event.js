@@ -10,6 +10,7 @@ const EventSchema = new mongoose.Schema({
             type: [Number] // [longitude, latitude]
         }
     },
+    price: String,
     description: String,
     imageUrl: String
 }, { timestamps: true });
