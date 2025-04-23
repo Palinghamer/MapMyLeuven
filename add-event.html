@@ -141,7 +141,7 @@
       const response = await fetch("https://mapmyleuven.onrender.com/events", {
         method: "POST",
         body: formData
-      });
+      })
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
