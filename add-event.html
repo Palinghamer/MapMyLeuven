@@ -55,6 +55,7 @@
       <div id="drop-area" class="border border-primary rounded p-4 text-center" style="cursor: pointer;">
         <p>📷 Drag & drop an image here, or click to select</p>
         <input type="file" id="eventImage" accept="image/*" style="display: none;">
+        <!-- Image preview area -->
         <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 100%; margin-top: 15px; border-radius: 8px;" />
       </div>
     </div>
@@ -130,34 +131,39 @@
     formData.append("date", eventDateTime); // or keep separate date/time
     formData.append("time", document.getElementById('eventTime').value);
     formData.append("location", document.getElementById('eventLocation').value);
-    formData.append("price", document.getElementById('price').value);
+    formData.append("price", document.getElementById('eventPrice').value);
     formData.append("description", document.getElementById('eventDescription').value);
 
     const file = document.getElementById('eventImage').files[0];
     if (file) formData.append("image", file);
 
     try {
-      const response = await fetch("https://map-my-leuven-backend.onrender.com/events"), {
+      const response = await fetch("https://map-my-leuven-backend.onrender.com/events", {
         method: "POST",
         body: formData
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to submit event');
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
       const data = await response.json();
       console.log("Event added:", data);
       alert("Event successfully submitted!");
       this.reset(); // Clear the form
-      document.getElementById('imagePreview').style.display = 'none'; // Hide preview
+
+      // Ensure imagePreview exists before modifying it
+      const imagePreviewElement = document.getElementById('imagePreview');
+      if (imagePreviewElement) {
+        imagePreviewElement.style.display = 'none'; // Hide preview
+      } else {
+        console.error("Image preview element not found");
+      }
     } catch (error) {
       console.error("Error adding event:", error);
       alert(error.message);
     }
   });
-
 </script>
 </body>
 </html>
