@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 3000;
 app.use(cors()); // You can restrict this later with origin: 'https://your-frontend.com'
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static('uploads'));
 
 // Optional: Serve static files if hosting frontend on the same server
 app.use(express.static(path.join(__dirname, "public")));
