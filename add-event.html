@@ -25,8 +25,8 @@
 
 <!-- Main form container -->
 <div class="container mb-5">
-  <form id="event-form" enctype="multipart/form-data">
-    <div class="form-group">
+  <form id="event-form" enctype="multipart/form-data" method="POST" action="https://mapmyleuven.onrender.com/events">
+  <div class="form-group">
       <label for="eventName">Event Name</label>
       <input type="text" class="form-control" id="eventName" required>
     </div>
@@ -126,6 +126,7 @@
     // Combine date and time if you want a single datetime field
     const eventDateTime = `${document.getElementById('eventDate').value}T${document.getElementById('eventTime').value}`;
 
+    const form = document.getElementById('event-form');
     const formData = new FormData();
     formData.append("title", document.getElementById('eventName').value);
     formData.append("date", eventDateTime); // or keep separate date/time
