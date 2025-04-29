@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
 
 const EventSchema = new mongoose.Schema({
-    title: String,
-    date: String,
-    time: String,
+    title: { type: String, required: true },
+    date: { type: String, required: true },  // Or Date if you’re combining date+time
+    time: { type: String },
     location: {
-        address: String,
+        address: { type: String, required: true },
         coordinates: {
-            type: [Number] // [longitude, latitude]
+            type: [Number], // [longitude, latitude]
         }
     },
-    price: String,
-    description: String,
-    imageUrl: String
+    price: { type: String },
+    description: { type: String },
+    imageUrl: { type: String }
 }, { timestamps: true });
 
 // ✅ Define the geospatial index just once here
