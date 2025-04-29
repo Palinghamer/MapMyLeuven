@@ -20,7 +20,7 @@ const upload = multer({ dest: 'uploads/' });
 
 router.post('/', upload.single('image'), async (req, res) => {
     try {
-        const { title, date, time, location, description } = req.body;
+        const { title, date, time, location, price, description } = req.body;
 
         // Step 1: Geocode the address
         const coordinates = await geocodeAddress(location);
