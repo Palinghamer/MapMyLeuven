@@ -22,7 +22,7 @@ function loadWeatherData(){
             output += "Current weather: " + data.weather[0].main+ ". ";
             output += "The current temperature is " +data.main.temp+ " °C (" + celsiusToFahrenheit(data.main.temp).toFixed(1) + " °F).";
 
-            output += "<br><br>MapMyLeauven recommends: "
+            output += "<br><br>Map My Leauven recommends: "
 
             //personalized messages for the weather
             if (data.weather[0].main === 'Clouds' || data.weather[0].main === 'Rain' || data.weather[0].main === 'Snow'){
