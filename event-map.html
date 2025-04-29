@@ -33,17 +33,23 @@
 
         <!-- Filter Bar -->
         <div class="filter-bar">
+            <!-- Category Filter -->
             <div class="filter-group">
                 <label for="category-filter">Category</label>
                 <select id="category-filter">
                     <option value="all">All Categories</option>
-                    <option value="student">Student</option>
-                    <option value="sports">Sports</option>
-                    <option value="kids">Kids</option>
-                    <option value="culture">Culture</option>
+                    <option value="Music">Music</option>
+                    <option value="Lecture">Lecture</option>
+                    <option value="Food">Food</option>
+                    <option value="Art">Art</option>
+                    <option value="Sport">Sport</option>
+                    <option value="Workshop">Workshop</option>
+                    <option value="Community">Community</option>
+                    <option value="Festival">Festival</option>
                 </select>
             </div>
 
+            <!-- Date Filter -->
             <div class="filter-group">
                 <label for="date-filter">Date</label>
                 <select id="date-filter">
@@ -52,19 +58,24 @@
                     <option value="tomorrow">Tomorrow</option>
                     <option value="week">This Week</option>
                     <option value="month">This Month</option>
+                    <option value="range">Select Range</option>
                 </select>
+                <div id="custom-date-range" style="display: none; margin-top: 5px;">
+                    <input type="date" id="start-date" />
+                    <input type="date" id="end-date" />
+                </div>
             </div>
 
+            <!-- Price Filter -->
             <div class="filter-group">
-                <label for="cost-filter">Cost</label>
-                <select id="cost-filter">
-                    <option value="all">All Prices</option>
-                    <option value="free">Free</option>
-                    <option value="paid">Paid</option>
-                    <option value="student">Student Discount</option>
-                </select>
+                <label for="min-price">Price (€)</label>
+                <div style="display: flex; gap: 5px;">
+                    <input type="number" id="min-price" placeholder="Min" step="0.01" min="0" style="width: 70px;" />
+                    <input type="number" id="max-price" placeholder="Max" step="0.01" min="0" style="width: 70px;" />
+                </div>
             </div>
 
+            <!-- Buttons -->
             <button id="apply-filters" class="filter-button">Apply Filters</button>
             <button id="reset-filters" class="filter-button reset">Reset</button>
         </div>
