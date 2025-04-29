@@ -47,6 +47,8 @@ router.post('/', upload.single('image'), async (req, res) => {
         // Step 4: Save and respond
         await newEvent.save();
         res.status(201).json(newEvent);
+        console.log("📦 Form data received:", req.body);
+        console.log("🖼 File received:", req.file);
     } catch (error) {
         console.error('❌ Event creation error:', error);
         res.status(400).json({ error: error.message });
