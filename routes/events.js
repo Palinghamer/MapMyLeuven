@@ -8,22 +8,22 @@ console.log('Geocode function:', typeof geocodeAddress);// Import the function
 const router = express.Router();
 
 const storage = multer.diskStorage({
-    destination: 'uploads/',
-    filename: (req, file, cb) => {
-        const ext = path.extname(file.originalname);
-        const uniqueName = Date.now() + '-' + file.originalname;
-        cb(null, uniqueName);
+    destination: function (req, file, cb) {
+        cb(null, path.join(__dirname, 'uploads')); // Ensure this path exists
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
     }
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
 router.post('/', upload.single('image'), async (req, res) => {
     try {
+        const { title, date, time, location, price, description } = req.body;
+
         console.log("📦 Form data received:", req.body);
         console.log("🖼 File received:", req.file);
-
-        const { title, date, time, location, price, description } = req.body;
 
         // Step 1: Geocode the address
         const coordinates = await geocodeAddress(location);
@@ -44,7 +44,8 @@ router.post('/', upload.single('image'), async (req, res) => {
             },
             price,
             description,
-            imageUrl: req.file ? `/uploads/${req.file.filename}` : null
+            imageUrl: req.file ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}` : null
+
         });
 
         // Step 4: Save and respond
