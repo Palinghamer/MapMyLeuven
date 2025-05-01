@@ -25,36 +25,46 @@ function loadWeatherData(){
             output += "<br><br>Map My Leauven recommends: "
 
             //personalized messages for the weather
-            if (data.weather[0].main === 'Clouds' || data.weather[0].main === 'Rain' || data.weather[0].main === 'Snow'){
+            if (data.weather[0].main === 'Rain' || data.weather[0].main === 'Snow'){
 
                 output += "Do not forget your umbrella! "
             }
-
-            if (data.weather[0].main === 'Mist') {
-                output += "There’s a chance of rain, better bring an umbrella. "
+            if (data.weather[0].main === 'Clouds' || data.weather[0].main === 'Mist') {
+                output += "There is a slight chance of rain, better bring an umbrella. "
             }
+
 
             if (data.weather[0].main === 'Clear' || data.weather[0].main === 'Sun') {
 
                 output += "Do not forget your sunglasses! "
             }
 
+
             //personalized messages for temperature
 
             if (data.main.temp > 25) {
-                output += "Stay hydrated! "
+                output += "A jacket is definitely not necessary. Stay hydrated! "
             }
 
-            if (data.main.temp > 14 && data.main.temp <= 25) {
+            if (data.main.temp > 16 && data.main.temp <= 25) {
+                output += "It is going to be warm, so a jacket is not necessary. "
+            }
+
+
+            if (data.main.temp > 10 && data.main.temp <= 16) {
                 output += "Bring a light jacket, just in case. "
             }
 
-            if (data.main.temp >= 5 && data.main.temp <= 14) {
+            if (data.main.temp >= 5 && data.main.temp <= 10) {
                 output += "Wear a jacket! It is going to be chilly. "
             }
 
-            if (data.main.temp < 5) {
-                output += "Wear a heavy jacket! It is going to be very cold. "
+            if (data.main.temp >= 0 && data.main.temp < 5) {
+                output += "Wear a heavy jacket! It is going to be cold. "
+            }
+
+            if (data.main.temp < 0){
+                output += "It is going to be very cold, wear a heavy jacket. "
             }
 
             // Result output
