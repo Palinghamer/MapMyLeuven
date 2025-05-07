@@ -1,13 +1,6 @@
 # MapMyLeuven 🗺️
-A web application that aggregates (Facebook) events happening in Leuven and displays them on a map
-#lalalalala
-#giuluhihiiu
+A web application that aggregates events happening in Leuven and displays them in a list and on a map with useful information.
 
+The front-end is [hosted](https://palinghamer.github.io/MapMyLeuven/homepage.html) through github pages, and the back-end (Node.js) through Render.com. 
 
-
-(((; ఠ ਉ ఠ))
-> We can use mongodb cloud for backend
-    > Store user logins (this would be a big challenge)
-        > Form for entering event details that are stored to mongodb
-            > Call information of event from mongodb
-
+This is a work in progress (((; ఠ ਉ ఠ))
