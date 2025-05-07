@@ -1,5 +1,5 @@
 # MapMyLeuven 🗺️
-A web application that aggregates events happening in Leuven and displays them in a list and on a map with useful information.
+A web application that aggregates events happening in Leuven and displays them on a map. 
 
 The front-end is [hosted](https://palinghamer.github.io/MapMyLeuven/homepage.html) through github pages, and the back-end (Node.js) through Render.com. 
 
