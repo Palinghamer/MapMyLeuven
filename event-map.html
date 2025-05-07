@@ -9,6 +9,7 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="global_style.css" />
     <link rel="stylesheet" href="homepage.css" />
+    <link rel="stylesheet" href="event-map.css" />
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -80,8 +81,14 @@
             <button id="reset-filters" class="filter-button reset">Reset</button>
         </div>
 
-        <!-- Map -->
-        <div id="map"></div>
+        <!-- Flex Layout: Map + Legend -->
+        <div class="map-layout">
+            <div id="map"></div>
+
+            <div id="event-legend" class="map-legend">
+                <ul id="event-list"></ul>
+            </div>
+        </div>
     </div>
 </section>
 

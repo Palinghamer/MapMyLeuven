@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    // Initialize the map
     const map = L.map("map").setView([50.879, 4.7], 13); // Leuven center
 
     // Add OpenStreetMap tile layer
@@ -8,6 +7,9 @@ document.addEventListener("DOMContentLoaded", async () => {
         attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
+    const eventListEl = document.getElementById("event-list");
+    const allMarkers = [];
+
     try {
         // Fetch events from the backend
         const response = await fetch("https://mapmyleuven.onrender.com/events");
@@ -15,8 +17,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         console.log("Fetched events:", events);
 
         events.forEach(event => {
-            console.log("Raw event:", event);
-
             const coords = event.location?.coordinates;
 
             if (
@@ -27,15 +27,42 @@ document.addEventListener("DOMContentLoaded", async () => {
                 !isNaN(coords[1])
             ) {
                 const [lng, lat] = coords; // GeoJSON order
-                console.log(`Placing marker at lat: ${lat}, lng: ${lng}`);
+                const imageUrl = event.imageUrl
+                    ? `https://mapmyleuven.onrender.com${event.imageUrl}`
+                    : null;
 
-                L.marker([lat, lng]) // Leaflet wants [lat, lng]
+                const popupContent = `
+                    <div style="max-width: 220px;">
+                        <strong>${event.title || "Untitled Event"}</strong><br/>
+                        ${event.date?.substring(0, 10) || "No date"} ${event.time || ""}<br/>
+                        ${event.location.address || ""}
+                        ${imageUrl ? `<br/><img src="${imageUrl}" alt="event image" style="width:100%; margin-top:5px; border-radius:6px;" />` : ""}
+                    </div>
+                `;
+
+                const marker = L.marker([lat, lng])
                     .addTo(map)
-                    .bindPopup(`
-                <strong>${event.title || "Untitled Event"}</strong><br/>
-                ${event.date || "No date provided"}<br/>
-                ${event.location.address || ""}
-            `);
+                    .bindPopup(popupContent);
+
+                allMarkers.push({ marker, lat, lng });
+
+                // Add to event list
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `
+                    <strong>${event.title || "Untitled Event"}</strong><br/>
+                    <small>
+                        🕒 ${event.date?.substring(0, 10) || "No date"}
+                        ${event.time || ""}
+                        <br/>
+                        📍 ${event.location?.address || "No address"}
+                    </small>
+                `;
+
+                listItem.addEventListener("click", () => {
+                    map.setView([lat, lng], 15);
+                    marker.openPopup();
+                });
+                eventListEl.appendChild(listItem);
             } else {
                 console.warn("Invalid coordinates for event:", coords);
             }
