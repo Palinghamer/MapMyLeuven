@@ -167,74 +167,88 @@
 </section>
 
 
-<!-- Event Map Section -->
-<section class="map-section">
-  <div class="map-container">
-    <h2>Event Map</h2>
+<!--&lt;!&ndash; Event Map Section &ndash;&gt;-->
+<!--<section class="map-section">-->
+<!--  <div class="map-container">-->
+<!--    <h2>Event Map</h2>-->
 
-    <!-- Filter Bar -->
-    <div class="filter-bar">
-      <!-- Category Filter -->
-      <div class="filter-group">
-        <label for="category-filter">Category</label>
-        <select id="category-filter">
-          <option value="all">All Categories</option>
-          <option value="Music">Music</option>
-          <option value="Lecture">Lecture</option>
-          <option value="Food">Food</option>
-          <option value="Art">Art</option>
-          <option value="Sport">Sport</option>
-          <option value="Workshop">Workshop</option>
-          <option value="Community">Community</option>
-          <option value="Festival">Festival</option>
-        </select>
-      </div>
-      <!-- Date Filter -->
-      <div class="filter-group">
-        <label for="date-filter">Date</label>
-        <select id="date-filter">
-          <option value="all">All Dates</option>
-          <option value="today">Today</option>
-          <option value="tomorrow">Tomorrow</option>
-          <option value="week">This Week</option>
-          <option value="month">This Month</option>
-          <option value="range">Select Range</option>
-        </select>
-        <div id="custom-date-range" style="display: none; margin-top: 5px;">
-          <input type="date" id="start-date" />
-          <input type="date" id="end-date" />
-        </div>
-      </div>
+<!--    &lt;!&ndash; Filter Bar &ndash;&gt;-->
+<!--    <div class="filter-bar">-->
+<!--      &lt;!&ndash; Category Filter &ndash;&gt;-->
+<!--      <div class="filter-group">-->
+<!--        <label for="category-filter">Category</label>-->
+<!--        <select id="category-filter">-->
+<!--          <option value="all">All Categories</option>-->
+<!--          <option value="Music">Music</option>-->
+<!--          <option value="Lecture">Lecture</option>-->
+<!--          <option value="Food">Food</option>-->
+<!--          <option value="Art">Art</option>-->
+<!--          <option value="Sport">Sport</option>-->
+<!--          <option value="Workshop">Workshop</option>-->
+<!--          <option value="Community">Community</option>-->
+<!--          <option value="Festival">Festival</option>-->
+<!--        </select>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; Date Filter &ndash;&gt;-->
+<!--      <div class="filter-group">-->
+<!--        <label for="date-filter">Date</label>-->
+<!--        <select id="date-filter">-->
+<!--          <option value="all">All Dates</option>-->
+<!--          <option value="today">Today</option>-->
+<!--          <option value="tomorrow">Tomorrow</option>-->
+<!--          <option value="week">This Week</option>-->
+<!--          <option value="month">This Month</option>-->
+<!--          <option value="range">Select Range</option>-->
+<!--        </select>-->
+<!--        <div id="custom-date-range" style="display: none; margin-top: 5px;">-->
+<!--          <input type="date" id="start-date" />-->
+<!--          <input type="date" id="end-date" />-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <!-- Price Filter -->
-      <div class="filter-group">
-        <label for="min-price">Price (€)</label>
-        <div style="display: flex; gap: 5px;">
-          <input type="number" id="min-price" placeholder="Min" step="0.01" min="0" style="width: 70px;">
-          <input type="number" id="max-price" placeholder="Max" step="0.01" min="0" style="width: 70px;">
-        </div>
-      </div>
+<!--      &lt;!&ndash; Price Filter &ndash;&gt;-->
+<!--      <div class="filter-group">-->
+<!--        <label for="min-price">Price (€)</label>-->
+<!--        <div style="display: flex; gap: 5px;">-->
+<!--          <input type="number" id="min-price" placeholder="Min" step="0.01" min="0" style="width: 70px;">-->
+<!--          <input type="number" id="max-price" placeholder="Max" step="0.01" min="0" style="width: 70px;">-->
+<!--        </div>-->
+<!--      </div>-->
 
-      <button id="apply-filters" class="filter-button">Apply Filters</button>
-      <button id="reset-filters" class="filter-button reset">Reset</button>
-    </div>
+<!--      <button id="apply-filters" class="filter-button">Apply Filters</button>-->
+<!--      <button id="reset-filters" class="filter-button reset">Reset</button>-->
+<!--    </div>-->
 
-    <!-- Map Placeholder (to be replaced with Google Maps) -->
-    <div id="map"></div>
+<!--    &lt;!&ndash; Map Placeholder (to be replaced with Google Maps) &ndash;&gt;-->
+<!--    <div id="map"></div>-->
 
-    <!-- Event List (Alternative view to the map) -->
-    <div class="event-list-toggle">
-      <button id="map-view-btn" class="view-toggle active">Map View</button>
-      <button id="list-view-btn" class="view-toggle">List View</button>
-    </div>
+<!--    &lt;!&ndash; Event List (Alternative view to the map) &ndash;&gt;-->
+<!--    <div class="event-list-toggle">-->
+<!--      <button id="map-view-btn" class="view-toggle active">Map View</button>-->
+<!--      <button id="list-view-btn" class="view-toggle">List View</button>-->
+<!--    </div>-->
 
-    <div id="event-list" style="display: none;">
-      <!-- Event items will be populated here -->
+<!--    <div id="event-list" style="display: none;">-->
+<!--      &lt;!&ndash; Event items will be populated here &ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+<section class="event-list-section">
+  <div class="container">
+    <h2 class="section-title">All Events</h2>
+    <div id="event-list-container" class="row">
+      <!-- Events will be inserted here dynamically -->
     </div>
   </div>
 </section>
+
+
+
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="map.js" defer></script>
+<script src="event-list.js" defer></script>
 </body>
 </html>
+
