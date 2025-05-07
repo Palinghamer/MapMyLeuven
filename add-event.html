@@ -118,18 +118,29 @@
   document.getElementById('event-form').addEventListener('submit', async function(e) {
     e.preventDefault();
 
-    // Combine date and time if you want a single datetime field
-    const eventDateTime = `${document.getElementById('eventDate').value}T${document.getElementById('eventTime').value}`;
+    // Get form values
+    const title = document.getElementById('eventName').value.trim();
+    const date = document.getElementById('eventDate').value;
+    const time = document.getElementById('eventTime').value;
+    const location = document.getElementById('eventLocation').value.trim();
+    const description = document.getElementById('eventDescription').value.trim();
+    const image = document.getElementById('eventImage').files[0];
+
+    // Validate all fields
+    if (!title || !date || !time || !location || !description || !image) {
+      alert("Please fill out all fields and upload an image.");
+      return;
+    }
+
+    const eventDateTime = `${date}T${time}`;
 
     const formData = new FormData();
-    formData.append("title", document.getElementById('eventName').value);
-    formData.append("date", eventDateTime); // or keep separate date/time
-    formData.append("time", document.getElementById('eventTime').value);
-    formData.append("location", document.getElementById('eventLocation').value);
-    formData.append("description", document.getElementById('eventDescription').value);
-
-    const file = document.getElementById('eventImage').files[0];
-    if (file) formData.append("image", file);
+    formData.append("title", title);
+    formData.append("date", eventDateTime);
+    formData.append("time", time);
+    formData.append("location", location);
+    formData.append("description", description);
+    formData.append("image", image);
 
     try {
       const response = await fetch("https://mapmyleuven.onrender.com/events", {
@@ -145,13 +156,15 @@
       const data = await response.json();
       console.log("Event added:", data);
       alert("Event successfully submitted!");
-      this.reset(); // Clear the form
-      document.getElementById('imagePreview').style.display = 'none'; // Hide preview
+
+      this.reset(); // Clear form
+      document.getElementById('imagePreview').style.display = 'none';
     } catch (error) {
       console.error("Error adding event:", error);
       alert(error.message);
     }
   });
+
 
 </script>
 </body>
