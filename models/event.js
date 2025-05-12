@@ -11,6 +11,20 @@ const EventSchema = new mongoose.Schema({
         }
     },
     price: { type: String },
+    category: {
+        type: String,
+        enum: [
+            'music',
+            'lecture',
+            'sport',
+            'food',
+            'art',
+            'workshop',
+            'community',
+            'festival'
+        ],
+        required: true
+    },
     description: { type: String },
     imageUrl: { type: String }
 }, { timestamps: true });

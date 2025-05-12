@@ -20,7 +20,7 @@ const upload = multer({ storage });
 
 router.post('/', upload.single('image'), async (req, res) => {
     try {
-        const { title, date, time, location, description } = req.body;
+        const { title, date, time, location, price, category, description } = req.body;
 
         // Step 1: Geocode the address
         const coordinates = await geocodeAddress(location);
@@ -39,6 +39,8 @@ router.post('/', upload.single('image'), async (req, res) => {
                 address: location,
                 coordinates: coordinates
             },
+            price,
+            category,
             description,
             imageUrl: req.file ? `/uploads/${req.file.filename}` : null
         });
@@ -51,12 +53,17 @@ router.post('/', upload.single('image'), async (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
-router.get('/', async (req, res) => {
+
+router.get('/', async (req, res, next) => {
     try {
-        const events = await Event.find();
-        res.json(events);
+        const filter = {};
+        if (req.query.category) {
+            filter.category = req.query.category;
+        }
+        const events = await Event.find(filter).sort('date');
+        res.render('events/list', { events, selectedCategory: req.query.category });
     } catch (err) {
-        res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 

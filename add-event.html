@@ -43,6 +43,24 @@
       <input type="text" class="form-control" id="eventLocation" required>
     </div>
     <div class="form-group">
+      <label for="eventPrice">Price</label>
+      <input type="text" class="form-control" id="eventPrice" required>
+    </div>
+    <div class="form-group">
+      <label for="eventCategory">Category</label>
+      <select id="eventCategory" class="form-control" required>
+        <option value="">— choose one —</option>
+        <option value="music">Music</option>
+        <option value="lecture">Lecture</option>
+        <option value="sport">Sport</option>
+        <option value="food">Food</option>
+        <option value="art">Art</option>
+        <option value="workshop">Workshop</option>
+        <option value="community">Community</option>
+        <option value="festival">Festival</option>
+      </select>
+    </div>
+    <div class="form-group">
       <label for="eventDescription">Description</label>
       <textarea class="form-control" id="eventDescription" rows="3"></textarea>
     </div>
@@ -123,11 +141,13 @@
     const date = document.getElementById('eventDate').value;
     const time = document.getElementById('eventTime').value;
     const location = document.getElementById('eventLocation').value.trim();
+    const price = document.getElementById('eventPrice').value.trim();
+    const category = document.getElementById('eventCategory').value;
     const description = document.getElementById('eventDescription').value.trim();
     const image = document.getElementById('eventImage').files[0];
 
     // Validate all fields
-    if (!title || !date || !time || !location || !description || !image) {
+    if (!title || !date || !time || !location || !price || !category || !description || !image) {
       alert("Please fill out all fields and upload an image.");
       return;
     }
@@ -139,6 +159,8 @@
     formData.append("date", eventDateTime);
     formData.append("time", time);
     formData.append("location", location);
+    formData.append("price", price);
+    formData.append("category", category);
     formData.append("description", description);
     formData.append("image", image);
 
