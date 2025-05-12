@@ -61,7 +61,7 @@ router.get('/', async (req, res, next) => {
             filter.category = req.query.category;
         }
         const events = await Event.find(filter).sort('date');
-        res.render('events/list', { events, selectedCategory: req.query.category });
+        res.json({ events, selectedCategory: req.query.category });
     } catch (err) {
         next(err);
     }
