@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     container.innerHTML += `
             <div class="col-md-4 mb-4">
               <div class="card h-100">
-                <img src="${event.imageUrl ? `https://mapmyleuven.onrender.com${event.imageUrl}` : 'https://via.placeholder.com/400x250?text=No+Image'}"
+                <img src="${event.imageUrl}" : 'https://via.placeholder.com/400x250?text=No+Image'}"
                      class="card-img-top" alt="${event.title}">
 
                 <div class="card-body">
