@@ -5,20 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- link to global style and css for weather page -->
     <link rel="stylesheet" href="global_style.css">
+    <link rel="stylesheet" href="homepage.css" />
     <script type="text/javascript" src="weathercode.js"></script>
     <!--This one above is the js file with all the instructions for the current weather -->
     <link rel="stylesheet" href="weather.css">
     <!-- title of the webpage and favicon -->
     <title>Weather - Map My Leuven</title>
     <link rel="icon" href="MAP%20MY%20LEUVEN.png">
-    <!-- link to navigation bar -->
-    <script>
-        fetch('navbar.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('navbar-placeholder').innerHTML = data;
-            });
-    </script>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Scripts -->
+    <script src="global_javascript.js" defer></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
 </head>
 <body>
 <!-- placeholder for where the navigation bar will come -->

@@ -18,7 +18,45 @@ function loadNavbar() {
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar-placeholder').innerHTML = data;
+            // After navbar is loaded, set the active state
+            setActiveNavLink();
+
+            // Add event listeners to nav links
+            addNavLinkListeners();
         });
+}
+
+// Function to set the active nav link based on current page
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'homepage.html';
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
+// Function to add click listeners to nav links
+function addNavLinkListeners() {
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // We don't need to prevent default since we want page navigation
+            // Remove active class from all links
+            navLinks.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // Add active class to the clicked link
+            this.classList.add('active');
+        });
+    });
 }
 
 // Function to initialize carousel
