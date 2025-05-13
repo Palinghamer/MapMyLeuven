@@ -4,6 +4,8 @@ const path = require('path');
 const Event = require('../models/event');
 const geocodeAddress = require('../utils/geocoder');
 console.log('Geocode function:', typeof geocodeAddress);// Import the function
+const cloudinary = require("cloudinary").v2;
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const router = express.Router();
 
@@ -17,6 +19,25 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage });
+
+// For Cloudinary:
+
+cloudinary.config({
+    cloud_name: dsy18hfwz,
+    api_key: 914243354638674,
+    api_secret: process.env.NbH2EOW6Q0DmzA-hfRwZbNE0Blo,
+});
+
+const cloudinaryStorage = new CloudinaryStorage({
+    cloudinary: cloudinary,
+    params: {
+        folder: 'event-images',
+        allowed_formats: ['jpg', 'png', 'jpeg', 'webp'],
+    },
+});
+
+const cloudinaryupload = multer({ storage: cloudinaryStorage });
+
 
 router.post('/', upload.single('image'), async (req, res) => {
     try {
@@ -42,7 +63,7 @@ router.post('/', upload.single('image'), async (req, res) => {
             price,
             category,
             description,
-            imageUrl: req.file ? `/uploads/${req.file.filename}` : null
+            imageUrl: req.file?.path || null
         });
 
         // Step 4: Save and respond

@@ -28,9 +28,14 @@ document.addEventListener("DOMContentLoaded", async () => {
                 !isNaN(coords[1])
             ) {
                 const [lng, lat] = coords; // GeoJSON order
-                const imageUrl = event.imageUrl
-                    ? `https://mapmyleuven.onrender.com${event.imageUrl}`
-                    : null;
+                const imageUrl = event.imageUrl; // Already a full URL from Cloudinary
+
+                if (imageUrl) {
+                    const img = document.createElement('img');
+                    img.src = imageUrl; // Use it directly
+                    img.alt = event.title;
+                    document.getElementById('event-container').appendChild(img);
+                }
 
                 const popupContent = `
                     <div style="max-width: 220px;">
