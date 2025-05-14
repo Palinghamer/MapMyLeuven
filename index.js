@@ -18,3 +18,6 @@ mongoose.connect(process.env.MONGO_URI, {
     .catch(err => console.error(err));
 
 app.listen(3000, () => console.log("Server running on port 3000"));
+app.get("/", (req, res) => {
+    res.send("🎉 Map My Leuven backend is running!");
+});

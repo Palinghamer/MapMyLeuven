@@ -3,14 +3,12 @@ const multer = require('multer');
 const path = require('path');
 const Event = require('../models/event');
 const geocodeAddress = require('../utils/geocoder');
-console.log('Geocode function:', typeof geocodeAddress);// Import the function
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const router = express.Router();
 
 // For Cloudinary:
-
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -27,7 +25,7 @@ const cloudinaryStorage = new CloudinaryStorage({
 
 const upload = multer({ storage: cloudinaryStorage });
 
-
+// POST /events - Create a new event
 router.post('/', upload.single('image'), async (req, res) => {
     try {
         const { title, date, time, location, price, category, description } = req.body;
@@ -64,6 +62,7 @@ router.post('/', upload.single('image'), async (req, res) => {
     }
 });
 
+// GET /events - Get all events (with optional category filtering)
 router.get('/', async (req, res, next) => {
     try {
         const filter = {};
@@ -74,6 +73,22 @@ router.get('/', async (req, res, next) => {
         res.json({ events: events, selectedCategory: req.query.category });
     } catch (err) {
         next(err);
+    }
+});
+
+// ✅ GET /events/:id - Get event by ID
+router.get('/:id', async (req, res) => {
+    try {
+        console.log('Fetching event with ID:', req.params.id);
+        const event = await Event.findById(req.params.id);
+        if (!event) {
+            console.warn('Event not found for ID:', req.params.id);
+            return res.status(404).json({ error: 'Event not found' });
+        }
+        res.json(event);
+    } catch (err) {
+        console.error('❌ Error fetching event by ID:', err);
+        res.status(500).json({ error: 'Server error' });
     }
 });
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Details</title>
+    <link rel="stylesheet" href="global_style.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+<div class="container mt-5">
+    <a href="index.html" class="btn btn-secondary mb-3">← Back to Home</a>
+    <div id="event-details">
+        <h2>Loading event...</h2>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const params = new URLSearchParams(window.location.search);
+        const eventId = params.get("id");
+
+        if (!eventId) {
+            document.getElementById("event-details").innerHTML = "<p>Event ID not found.</p>";
+            return;
+        }
+
+        // ✅ CORRECT URL
+        const url = `https://mapmyleuven.onrender.com/events/${eventId}`;
+
+        fetch(url)
+            .then(res => {
+                if (!res.ok) throw new Error("Event not found.");
+                return res.json();
+            })
+            .then(event => {
+                const imageUrl = event.imageUrl?.startsWith("http")
+                    ? event.imageUrl
+                    : `https://mapmyleuven.onrender.com${event.imageUrl}`;
+
+                document.getElementById("event-details").innerHTML = `
+          <div class="card">
+            <img src="${imageUrl}" class="card-img-top" alt="${event.title}">
+            <div class="card-body">
+              <h3 class="card-title">${event.title}</h3>
+              <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
+              <p><strong>Time:</strong> ${event.time}</p>
+              <p><strong>Location:</strong> ${event.location?.address || "Not specified"}</p>
+              <p><strong>Price:</strong> ${event.price || "Free"}</p>
+              <p><strong>Category:</strong> ${event.category || "General"}</p>
+              <p>${event.description || "No description available."}</p>
+            </div>
+          </div>
+        `;
+            })
+            .catch(error => {
+                console.error("❌ Error loading event:", error);
+                document.getElementById("event-details").innerHTML = "<p>Unable to load event details.</p>";
+            });
+    });
+</script>
+
+</body>
+</html>
