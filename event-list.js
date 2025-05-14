@@ -1,9 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     fetch("https://mapmyleuven.onrender.com/events")
         .then(res => res.json())
-        .then(events => {
+        .then(data => {
+            const events = data.events;
             const container = document.getElementById("event-list-container");
             container.innerHTML = "";
+
+            if (!Array.isArray(events)) {
+                console.error("Expected an array, but got:", events);
+                return;
+            }
 
             events
                 .filter(event => event.title && event.location && event.date && event.time)
@@ -11,7 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     container.innerHTML += `
             <div class="col-md-4 mb-4">
               <div class="card h-100">
-                <img src="${event.imageUrl}" : 'https://via.placeholder.com/400x250?text=No+Image'}"
+                <img src="${event.imageUrl?.startsWith('http')
+                        ? event.imageUrl
+                        : `https://mapmyleuven.onrender.com${event.imageUrl}`}" 
                      class="card-img-top" alt="${event.title}">
 
                 <div class="card-body">
@@ -20,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   <p>
                     <strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}<br>
                     <strong>Time:</strong> ${event.time}<br>
-                    <strong>Location:</strong> ${event.location.address}
+                    <strong>Location:</strong> ${event.location?.address || "Unknown"}
                   </p>
                 </div>
               </div>
