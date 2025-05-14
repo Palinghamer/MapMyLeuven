@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- link to global style and css for homepage -->
-  <link rel="stylesheet" href="global_style.css">
-  <link rel="stylesheet" href="homepage.css">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-  integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-  crossorigin="anonymous">
-  <!-- title of the webpage and favicon -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Map My Leuven</title>
-  <link rel="icon" href="MAP%20MY%20LEUVEN.png">
-  <!-- link to global javascript file -->
-  <script src="global_javascript.js" defer></script>
-  <link
-          rel="stylesheet"
-          href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  />
-
+  <link rel="icon" href="MAP%20MY%20LEUVEN.png" />
+  <link rel="stylesheet" href="global_style.css" />
+  <link rel="stylesheet" href="homepage.css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="global_javascript.js" defer></script> <!-- ✅ Brings back the navbar -->
 </head>
+
 <body>
-<!-- navigation bar -->
+<!-- Navigation Bar -->
 <div id="navbar-placeholder"></div>
 
 <!-- Intro Section -->
@@ -30,133 +23,38 @@
   <div class="intro-container">
     <div class="intro-text">
       <h1>Welcome to Map My Leuven</h1>
-      <p> <b>Discover what's happening in Leuven with our interactive event platform! </b> <br><br>
-
+      <p>
+        <b>Discover what's happening in Leuven with our interactive event platform!</b><br><br>
         Whether you're a student looking for the next cantus, a visitor exploring local festivities, or a resident wanting to stay connected, our interactive map and comprehensive event listings make it easy to find what's happening around you.
-
-        </p>
+      </p>
       <div class="intro-buttons">
         <a href="event-map.html" class="btn btn-primary">Event Map</a>
         <a href="add-event.html" class="btn btn-success">Add Event</a>
       </div>
     </div>
     <div class="intro-image">
-      <img src="https://www.visitleuven.be/sites/visitleuven.be/files/styles/is_card_large/public/images/2024-06/browse_0.jpg?itok=HjH-7zY7" alt="Leuven City">
+      <img src="https://www.visitleuven.be/sites/visitleuven.be/files/styles/is_card_large/public/images/2024-06/browse_0.jpg?itok=HjH-7zY7" alt="Leuven City" />
     </div>
   </div>
 </section>
 
-<!-- Upcoming Events Section -->
+<!-- Upcoming Events Carousel -->
 <section class="events-section">
   <div class="events-container">
     <h2 class="section-title">UPCOMING EVENTS</h2>
 
     <div class="events-carousel-container">
-      <button class="carousel-arrow prev-arrow" id="prev-arrow">
-        <i class="fas fa-chevron-left">&#8592;</i>
-      </button>
+      <button class="carousel-arrow prev-arrow" id="prev-arrow">&#8592;</button>
 
       <div class="events-carousel" id="events-carousel">
-        <div class="event-card">
-          <div class="event-image">
-            <img src="beiaardcantus.avif" alt="Beiaardcantus">
-            <div class="event-date">
-              <span class="date-day">14</span>
-              <span class="date-month">MAY</span>
-            </div>
-          </div>
-          <div class="event-info">
-            <h3>Beiaardcantus</h3>
-            <div class="event-details">
-                            <span class="event-location">
-                                <i class="fas fa-map-marker-alt">📍</i> Ladeuzeplein
-                            </span>
-              <span class="event-time">
-                                <i class="fas fa-clock">🕒</i> 18:00
-                            </span>
-            </div>
-            <p class="event-description">Join the traditional student singing event at the iconic Ladeuzeplein.</p>
-            <a href="beiaard.html" class="event-link">Learn More</a>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-image">
-            <img src="600%20Leuven.jpg" alt="600 years KU Leuven">
-            <div class="event-date">
-              <span class="date-day">10</span>
-              <span class="date-month">APR</span>
-            </div>
-          </div>
-          <div class="event-info">
-            <h3>600 years KU Leuven</h3>
-            <div class="event-details">
-                            <span class="event-location">
-                                <i class="fas fa-map-marker-alt">📍</i> University Hall
-                            </span>
-              <span class="event-time">
-                                <i class="fas fa-clock">🕒</i> 10:00
-                            </span>
-            </div>
-            <p class="event-description">Celebrate 600 years of academic excellence at KU Leuven with special events.</p>
-            <a href="600_years_kul.html" class="event-link">Learn More</a>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-image">
-            <img src="longest%20day.jpg" alt="The Longest Day">
-            <div class="event-date">
-              <span class="date-day">21</span>
-              <span class="date-month">JUN</span>
-            </div>
-          </div>
-          <div class="event-info">
-            <h3>The Longest Day</h3>
-            <div class="event-details">
-                            <span class="event-location">
-                                <i class="fas fa-map-marker-alt">📍</i> City Center
-                            </span>
-              <span class="event-time">
-                                <i class="fas fa-clock">🕒</i> All Day
-                            </span>
-            </div>
-            <p class="event-description">Summer solstice celebrations throughout Leuven with music and activities.</p>
-            <a href="longest_day.html" class="event-link">Learn More</a>
-          </div>
-        </div>
-
-        <div class="event-card">
-          <div class="event-image">
-            <img src="carnaval%20Leuven.jpg" alt="Leuven Carnival">
-            <div class="event-date">
-              <span class="date-day">15</span>
-              <span class="date-month">MAY</span>
-            </div>
-          </div>
-          <div class="event-info">
-            <h3>Leuven Carnival</h3>
-            <div class="event-details">
-                            <span class="event-location">
-                                <i class="fas fa-map-marker-alt">📍</i> Grote Markt
-                            </span>
-              <span class="event-time">
-                                <i class="fas fa-clock">🕒</i> 14:00
-                            </span>
-            </div>
-            <p class="event-description">Annual carnival parade with colorful costumes and festive atmosphere.</p>
-            <a href="Leuven_carnival.html" class="event-link">Learn More</a>
-          </div>
-        </div>
+        <!-- Dynamic event cards will be inserted here -->
       </div>
 
-      <button class="carousel-arrow next-arrow" id="next-arrow">
-        <i class="fas fa-chevron-right">&#8594;</i>
-      </button>
+      <button class="carousel-arrow next-arrow" id="next-arrow">&#8594;</button>
     </div>
 
     <div class="carousel-indicators" id="carousel-indicators">
-      <!-- Indicators will be generated by JavaScript -->
+      <!-- Optional indicators -->
     </div>
 
     <div class="view-all-events">
@@ -165,74 +63,7 @@
   </div>
 </section>
 
-
-<!--&lt;!&ndash; Event Map Section &ndash;&gt;-->
-<!--<section class="map-section">-->
-<!--  <div class="map-container">-->
-<!--    <h2>Event Map</h2>-->
-
-<!--    &lt;!&ndash; Filter Bar &ndash;&gt;-->
-<!--    <div class="filter-bar">-->
-<!--      &lt;!&ndash; Category Filter &ndash;&gt;-->
-<!--      <div class="filter-group">-->
-<!--        <label for="category-filter">Category</label>-->
-<!--        <select id="category-filter">-->
-<!--          <option value="all">All Categories</option>-->
-<!--          <option value="Music">Music</option>-->
-<!--          <option value="Lecture">Lecture</option>-->
-<!--          <option value="Food">Food</option>-->
-<!--          <option value="Art">Art</option>-->
-<!--          <option value="Sport">Sport</option>-->
-<!--          <option value="Workshop">Workshop</option>-->
-<!--          <option value="Community">Community</option>-->
-<!--          <option value="Festival">Festival</option>-->
-<!--        </select>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; Date Filter &ndash;&gt;-->
-<!--      <div class="filter-group">-->
-<!--        <label for="date-filter">Date</label>-->
-<!--        <select id="date-filter">-->
-<!--          <option value="all">All Dates</option>-->
-<!--          <option value="today">Today</option>-->
-<!--          <option value="tomorrow">Tomorrow</option>-->
-<!--          <option value="week">This Week</option>-->
-<!--          <option value="month">This Month</option>-->
-<!--          <option value="range">Select Range</option>-->
-<!--        </select>-->
-<!--        <div id="custom-date-range" style="display: none; margin-top: 5px;">-->
-<!--          <input type="date" id="start-date" />-->
-<!--          <input type="date" id="end-date" />-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      &lt;!&ndash; Price Filter &ndash;&gt;-->
-<!--      <div class="filter-group">-->
-<!--        <label for="min-price">Price (€)</label>-->
-<!--        <div style="display: flex; gap: 5px;">-->
-<!--          <input type="number" id="min-price" placeholder="Min" step="0.01" min="0" style="width: 70px;">-->
-<!--          <input type="number" id="max-price" placeholder="Max" step="0.01" min="0" style="width: 70px;">-->
-<!--        </div>-->
-<!--      </div>-->
-
-<!--      <button id="apply-filters" class="filter-button">Apply Filters</button>-->
-<!--      <button id="reset-filters" class="filter-button reset">Reset</button>-->
-<!--    </div>-->
-
-<!--    &lt;!&ndash; Map Placeholder (to be replaced with Google Maps) &ndash;&gt;-->
-<!--    <div id="map"></div>-->
-
-<!--    &lt;!&ndash; Event List (Alternative view to the map) &ndash;&gt;-->
-<!--    <div class="event-list-toggle">-->
-<!--      <button id="map-view-btn" class="view-toggle active">Map View</button>-->
-<!--      <button id="list-view-btn" class="view-toggle">List View</button>-->
-<!--    </div>-->
-
-<!--    <div id="event-list" style="display: none;">-->
-<!--      &lt;!&ndash; Event items will be populated here &ndash;&gt;-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
+<!-- All Events List -->
 <section class="event-list-section">
   <div class="container">
     <h2 class="section-title">All Events</h2>
@@ -242,12 +73,79 @@
   </div>
 </section>
 
-
-
-<!-- Leaflet JS -->
+<!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="map.js" defer></script>
 <script src="event-list.js" defer></script>
+
+<!-- Dynamic Carousel Script -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Fetch and render carousel events
+    fetch("https://mapmyleuven.onrender.com/events")
+            .then(res => res.json())
+            .then(data => {
+              const events = data.events;
+              const carouselContainer = document.getElementById("events-carousel");
+              carouselContainer.innerHTML = "";
+
+              if (!Array.isArray(events)) {
+                console.error("Expected an array, but got:", events);
+                return;
+              }
+
+              events
+                      .filter(event => event.title && event.location && event.date && event.time)
+                      .slice(0, 8)
+                      .forEach(event => {
+                        const date = new Date(event.date);
+                        const day = date.getDate();
+                        const month = date.toLocaleString("default", { month: "short" }).toUpperCase();
+                        const imageUrl = event.imageUrl?.startsWith("http")
+                                ? event.imageUrl
+                                : `https://mapmyleuven.onrender.com${event.imageUrl}`;
+
+                        carouselContainer.innerHTML += `
+              <div class="event-card">
+                <div class="event-image">
+                  <img src="${imageUrl}" alt="${event.title}">
+                  <div class="event-date">
+                    <span class="date-day">${day}</span>
+                    <span class="date-month">${month}</span>
+                  </div>
+                </div>
+                <div class="event-info">
+                  <h3>${event.title}</h3>
+                  <div class="event-details">
+                    <span class="event-location">📍 ${event.location?.address || "Unknown"}</span>
+                    <span class="event-time">🕒 ${event.time}</span>
+                  </div>
+                  <p class="event-description">${event.description || "No description provided."}</p>
+                  <a href="event-details.html?id=${event._id}" class="event-link">Learn More</a>
+                </div>
+              </div>
+            `;
+                      });
+            })
+            .catch(error => {
+              console.error("Error loading events into carousel:", error);
+            });
+
+    // Add carousel scroll behavior
+    const carousel = document.getElementById("events-carousel");
+    const nextBtn = document.getElementById("next-arrow");
+    const prevBtn = document.getElementById("prev-arrow");
+
+    const scrollAmount = 300;
+
+    nextBtn.addEventListener("click", () => {
+      carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      carousel.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+    });
+  });
+</script>
 </body>
 </html>
-
