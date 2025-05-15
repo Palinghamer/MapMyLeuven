@@ -58,24 +58,13 @@
     </div>
 
     <div class="view-all-events">
-      <a href="events.html" class="view-all-btn">View All Events</a>
-    </div>
-  </div>
-</section>
-
-<!-- All Events List -->
-<section class="event-list-section">
-  <div class="container">
-    <h2 class="section-title">All Events</h2>
-    <div id="event-list-container" class="row">
-      <!-- Events will be inserted here dynamically -->
+      <a href="event-list.html" class="view-all-btn">View All Events</a>
     </div>
   </div>
 </section>
 
 <!-- Scripts -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="map.js" defer></script>
 <script src="event-list.js" defer></script>
 
 <!-- Dynamic Carousel Script -->
@@ -96,7 +85,7 @@
 
               events
                       .filter(event => event.title && event.location && event.date && event.time)
-                      .slice(0, 8)
+                      .slice(0, 6) // ✅ Limit to 6 events
                       .forEach(event => {
                         const date = new Date(event.date);
                         const day = date.getDate();
@@ -131,11 +120,10 @@
               console.error("Error loading events into carousel:", error);
             });
 
-    // Add carousel scroll behavior
+    // Carousel scroll behavior
     const carousel = document.getElementById("events-carousel");
     const nextBtn = document.getElementById("next-arrow");
     const prevBtn = document.getElementById("prev-arrow");
-
     const scrollAmount = 300;
 
     nextBtn.addEventListener("click", () => {

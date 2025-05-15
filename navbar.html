@@ -36,7 +36,6 @@
 
   .logo img {
     height: 70px;
-
   }
 
   .nav-links {
@@ -112,66 +111,6 @@
     height: 24px;
   }
 
-  .search-container {
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 25px;
-    padding: 3px;
-    transition: all 0.3s ease;
-  }
-
-  .search-container:focus-within {
-    background-color: white;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-  }
-
-  .search-container input {
-    padding: 8px 15px;
-    border: none;
-    background: transparent;
-    color: white;
-    width: 180px;
-    outline: none;
-    border-radius: 25px 0 0 25px;
-  }
-
-  .search-container input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
-  }
-
-  .search-container:focus-within input {
-    color: #333;
-  }
-
-  .search-container:focus-within input::placeholder {
-    color: #999;
-  }
-
-  .search-container button {
-    background: transparent;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 0 25px 25px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .search-container:focus-within button {
-    color: #2a5298;
-  }
-
-  .search-icon {
-    color: white;
-    font-size: 18px;
-  }
-
-  .search-container:focus-within .search-icon {
-    color: #2a5298;
-  }
-
   .menu-toggle {
     display: none;
     background: none;
@@ -180,8 +119,6 @@
     font-size: 24px;
     cursor: pointer;
   }
-
-
 </style>
 
 <!-- Navigation Bar -->
@@ -199,23 +136,17 @@
       <a href="homepage.html">Home</a>
       <a href="about.html">About</a>
       <a href="event-map.html">Event map</a>
+      <a href="event-list.html">All events</a> <!-- ✅ New link -->
       <a href="add-event.html">Add event</a>
       <a href="faq.html">FAQ</a>
     </div>
+
 
     <div class="right-section">
       <a href="weather.html" class="weather-link">
         <img src="https://cdn-icons-png.flaticon.com/512/1779/1779940.png" alt="Weather" class="weather-icon">
         <span>Check Weather</span>
       </a>
-
-      <div class="search-container">
-        <input type="text" placeholder="Search...">
-        <button type="submit">
-          <i class="fas fa-search search-icon">🔍</i>
-        </button>
-      </div>
     </div>
   </div>
 </nav>
-

@@ -2,21 +2,216 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event Details</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Event Details - Map My Leuven</title>
+    <link rel="icon" href="MAP%20MY%20LEUVEN.png" />
     <link rel="stylesheet" href="global_style.css" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f8f8f8;
+        }
+
+        .event-detail-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .event-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .event-info {
+            flex: 1;
+        }
+
+        .event-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #event-details .event-description {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            display: block;
+            -webkit-line-clamp: unset;
+            -webkit-box-orient: unset;
+            overflow: visible;
+            -webkit-mask-image: none;
+            mask-image: none;
+        }
+
+        .event-meta {
+            margin-top: 20px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            min-width: 80px;
+            color: #4285c7;
+        }
+
+        .meta-value {
+            color: #333;
+        }
+
+        .meta-value a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .meta-value a:hover {
+            text-decoration: underline;
+        }
+
+        .event-image {
+            flex: 1;
+            max-width: 450px;
+            height: 250px; /* fixed height */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            border-radius: 15px;
+        }
+
+        .social-share {
+            margin-top: 20px;
+        }
+
+        .social-share a {
+            display: inline-block;
+            margin-right: 15px;
+            color: #4285c7;
+            text-decoration: none;
+        }
+
+        .social-share a:hover {
+            color: #2a5298;
+        }
+
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 992px) {
+            .event-header {
+                flex-direction: column;
+            }
+
+            .event-image {
+                max-width: 100%;
+                margin-top: 20px;
+            }
+        }
+
+        /* === More Events (Grid) === */
+        .events-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #fff;
+            background-color: #4285c7;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .more-events-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .more-event-card {
+            width: 300px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .more-event-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .more-event-card a {
+            display: block;
+            padding: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .more-event-card a:hover {
+            color: #2a5298;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-5">
-    <a href="index.html" class="btn btn-secondary mb-3">← Back to Home</a>
-    <div id="event-details">
-        <h2>Loading event...</h2>
-    </div>
+
+<div id="navbar-placeholder"></div>
+
+<!-- Main Event Detail -->
+<div class="event-detail-container" id="event-details">
+    <h2>Loading event...</h2>
 </div>
 
+<!-- More Events Grid -->
+<section class="events-section">
+    <h2 class="section-title">More Events</h2>
+    <div class="more-events-grid" id="more-events-grid">
+        <!-- Dynamic cards will appear here -->
+    </div>
+</section>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    // Load navbar
+    fetch('/navbar.html')
+        .then(res => res.text())
+        .then(html => {
+            document.getElementById('navbar-placeholder').innerHTML = html;
+        });
+
+    // Load main event
+    document.addEventListener("DOMContentLoaded", () => {
         const params = new URLSearchParams(window.location.search);
         const eventId = params.get("id");
 
@@ -25,39 +220,100 @@
             return;
         }
 
-        // ✅ CORRECT URL
         const url = `https://mapmyleuven.onrender.com/events/${eventId}`;
 
         fetch(url)
-            .then(res => {
-                if (!res.ok) throw new Error("Event not found.");
-                return res.json();
-            })
+            .then(res => res.json())
             .then(event => {
                 const imageUrl = event.imageUrl?.startsWith("http")
                     ? event.imageUrl
                     : `https://mapmyleuven.onrender.com${event.imageUrl}`;
 
+                document.title = `${event.title} - Map My Leuven`;
+
                 document.getElementById("event-details").innerHTML = `
-          <div class="card">
-            <img src="${imageUrl}" class="card-img-top" alt="${event.title}">
-            <div class="card-body">
-              <h3 class="card-title">${event.title}</h3>
-              <p><strong>Date:</strong> ${new Date(event.date).toLocaleDateString()}</p>
-              <p><strong>Time:</strong> ${event.time}</p>
-              <p><strong>Location:</strong> ${event.location?.address || "Not specified"}</p>
-              <p><strong>Price:</strong> ${event.price || "Free"}</p>
-              <p><strong>Category:</strong> ${event.category || "General"}</p>
-              <p>${event.description || "No description available."}</p>
+          <div class="event-header">
+            <div class="event-info">
+              <h1 class="event-title">${event.title}</h1>
+
+              <div class="event-description">
+                <p>${event.description || "No description available."}</p>
+              </div>
+
+              <div class="event-meta">
+                <div class="meta-item">
+                  <div class="meta-label">WHEN:</div>
+                  <div class="meta-value">${new Date(event.date).toLocaleDateString()}, ${event.time}</div>
+                </div>
+                <div class="meta-item">
+                  <div class="meta-label">WHERE:</div>
+                  <div class="meta-value">
+                    <a href="http://localhost:63342/MapMyLeuven/event-map.html" target="_blank">
+                      ${event.location?.address || "Not specified"}
+                    </a>
+                  </div>
+                </div>
+                <div class="meta-item">
+                  <div class="meta-label">PRICE:</div>
+                  <div class="meta-value">${event.price || "Free"}</div>
+                </div>
+                <div class="meta-item">
+                  <div class="meta-label">CATEGORY:</div>
+                  <div class="meta-value">${event.category || "General"}</div>
+                </div>
+              </div>
+
+              ${event.facebookLink ? `
+                <div class="social-share">
+                  <a href="${event.facebookLink}" target="_blank">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook" class="social-icon">
+                    ${event.title} on Facebook
+                  </a>
+                </div>
+              ` : ''}
+            </div>
+            <div class="event-image">
+              <img src="${imageUrl}" alt="${event.title}">
             </div>
           </div>
         `;
             })
-            .catch(error => {
-                console.error("❌ Error loading event:", error);
+            .catch(err => {
+                console.error("Error loading event:", err);
                 document.getElementById("event-details").innerHTML = "<p>Unable to load event details.</p>";
             });
     });
+
+    // Load 3 random other events
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    fetch("https://mapmyleuven.onrender.com/events")
+        .then(res => res.json())
+        .then(data => {
+            const currentId = new URLSearchParams(window.location.search).get("id");
+            const grid = document.getElementById("more-events-grid");
+
+            const others = shuffleArray(data.events.filter(e => e._id !== currentId && e.imageUrl)).slice(0, 3);
+
+            grid.innerHTML = others.map(event => {
+                const image = event.imageUrl?.startsWith("http")
+                    ? event.imageUrl
+                    : `https://mapmyleuven.onrender.com${event.imageUrl}`;
+                return `
+          <div class="more-event-card">
+            <img src="${image}" alt="${event.title}" />
+            <a href="event-details.html?id=${event._id}">${event.title}</a>
+          </div>
+        `;
+            }).join("");
+        })
+        .catch(err => console.error("Error loading more events:", err));
 </script>
 
 </body>
