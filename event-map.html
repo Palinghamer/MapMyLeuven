@@ -20,7 +20,7 @@
     <!-- Scripts -->
     <script src="global_javascript.js" defer></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="event-map.js" defer></script>
+    <script type="module" src="event-map.js"></script>
 </head>
 <body>
 
@@ -71,14 +71,22 @@
             <div class="filter-group">
                 <label for="min-price">Price (€)</label>
                 <div style="display: flex; gap: 5px;">
-                    <input type="number" id="min-price" placeholder="Min" step="0.01" min="0" style="width: 70px;" />
-                    <input type="number" id="max-price" placeholder="Max" step="0.01" min="0" style="width: 70px;" />
+                    <input type="number" id="min-price" placeholder="Min" />
+                    <input type="number" id="max-price" placeholder="Max" />
                 </div>
             </div>
 
+            <!-- Checkbox -->
+            <div class="checkbox-group">
+                <input type="checkbox" id="filter-by-map" />
+                <label for="filter-by-map">Only show events in map view</label>
+            </div>
+
             <!-- Buttons -->
-            <button id="apply-filters" class="filter-button">Apply Filters</button>
-            <button id="reset-filters" class="filter-button reset">Reset</button>
+            <div class="button-group">
+                <button id="apply-filters" class="filter-button">Apply Filters</button>
+                <button id="reset-filters" class="filter-button reset">Reset</button>
+            </div>
         </div>
 
         <!-- Flex Layout: Map + Legend -->
