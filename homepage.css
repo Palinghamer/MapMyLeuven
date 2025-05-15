@@ -68,11 +68,18 @@
 /* Carousel */
 .events-carousel {
     display: flex;
-    overflow: hidden;
+    overflow-x: auto; /* change from 'hidden' to 'auto' to allow scrolling */
     scroll-behavior: smooth;
     width: 100%;
     padding: 20px 0;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
 }
+
+.events-carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
 
 /* Common Event Card Styles (Used on Homepage and Event Detail) */
 .event-card {
@@ -357,4 +364,11 @@
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.prev-arrow {
+    left: 10px; /* was -25px */
+}
+
+.next-arrow {
+    right: 10px; /* was -25px */
 }

@@ -58,8 +58,10 @@
 
 #event-list li strong {
     font-size: 15px;
-    color: #333;
+    color: white;
+    font-weight: 600;
 }
+
 
 #event-list li small {
     color: #555;
@@ -85,3 +87,10 @@
         height: 400px;
     }
 }
+.map-section .section-title {
+    color: white !important;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
