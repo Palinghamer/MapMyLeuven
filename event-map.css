@@ -58,9 +58,10 @@
 
 #event-list li strong {
     font-size: 15px;
-    color: white;
+    color: #333; /* A dark grey that matches the overall style */
     font-weight: 600;
 }
+
 
 
 #event-list li small {
@@ -94,3 +95,10 @@
     margin-bottom: 20px;
 }
 
+.popup-event-img {
+    width: 200px;       /* Fixed width */
+    height: 120px;      /* Fixed height */
+    object-fit: cover;  /* Ensures the image fills the box without distortion */
+    border-radius: 6px;
+    margin-top: 5px;
+}

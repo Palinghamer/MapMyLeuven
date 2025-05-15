@@ -34,12 +34,17 @@ document.addEventListener("DOMContentLoaded", async () => {
 
                 const popupContent = `
                     <div style="max-width: 220px;">
-                        <strong>${event.title || "Untitled Event"}</strong><br/>
+                        <strong>
+                            <a href="event-details.html?id=${event._id}" target="_blank" style="color:#333; text-decoration:none;">
+                                ${event.title || "Untitled Event"}
+                            </a>
+                        </strong><br/>
                         ${event.date?.substring(0, 10) || "No date"} ${event.time || ""}<br/>
                         ${event.location.address || ""}
-                        ${imageUrl ? `<br/><img src="${imageUrl}" alt="event image" style="width:100%; margin-top:5px; border-radius:6px;" />` : ""}
+                        ${imageUrl ? `<br/><img src="${imageUrl}" alt="event image" class="popup-event-img" />` : ""}
                     </div>
                 `;
+
 
                 const marker = L.marker([lat, lng])
                     .addTo(map)
