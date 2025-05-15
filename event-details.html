@@ -45,12 +45,6 @@
             color: #444;
             line-height: 1.6;
             margin-bottom: 30px;
-            display: block;
-            -webkit-line-clamp: unset;
-            -webkit-box-orient: unset;
-            overflow: visible;
-            -webkit-mask-image: none;
-            mask-image: none;
         }
 
         .event-meta {
@@ -65,7 +59,7 @@
 
         .meta-label {
             font-weight: bold;
-            min-width: 80px;
+            min-width: 90px;
             color: #4285c7;
         }
 
@@ -85,7 +79,7 @@
         .event-image {
             flex: 1;
             max-width: 450px;
-            height: 250px; /* fixed height */
+            height: 250px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -150,19 +144,19 @@
         }
 
         .more-events-grid {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
         }
 
         .more-event-card {
-            width: 300px;
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             text-align: center;
+            display: flex;
+            flex-direction: column;
         }
 
         .more-event-card img {
@@ -229,6 +223,10 @@
                     ? event.imageUrl
                     : `https://mapmyleuven.onrender.com${event.imageUrl}`;
 
+                const category = event.category
+                    ? event.category.charAt(0).toUpperCase() + event.category.slice(1)
+                    : "General";
+
                 document.title = `${event.title} - Map My Leuven`;
 
                 document.getElementById("event-details").innerHTML = `
@@ -258,8 +256,8 @@
                   <div class="meta-value">${event.price || "Free"}</div>
                 </div>
                 <div class="meta-item">
-                  <div class="meta-label">CATEGORY:</div>
-                  <div class="meta-value">${event.category || "General"}</div>
+                  <div class="meta-label">TAG:</div>
+                  <div class="meta-value"> ${category}</div>
                 </div>
               </div>
 
