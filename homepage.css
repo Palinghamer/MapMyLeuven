@@ -62,7 +62,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 30px;
-    overflow: visible; /* Add this to ensure arrows outside are visible */
+    overflow: visible;
 }
 
 /* Carousel */
@@ -74,7 +74,7 @@
     padding: 20px 0;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE 10+ */
-    margin: 0 60px; /* Add margin instead of padding to the container */
+    margin: 0 60px;
 }
 
 .events-carousel::-webkit-scrollbar {
@@ -198,7 +198,7 @@
     background-color: #2a5298;
 }
 
-/* Carousel Arrows (Fixed Version) */
+/* Carousel Arrows */
 .carousel-arrow {
     position: absolute;
     top: 50%;

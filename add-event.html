@@ -91,7 +91,7 @@
 </div>
 
 <script>
-  // ✅ Prevent browser from opening file on drop anywhere
+  // Prevent browser from opening file on drop anywhere
   window.addEventListener("dragover", function(e) {
     e.preventDefault();
   }, false);
@@ -100,7 +100,7 @@
     e.preventDefault();
   }, false);
 
-  // ✅ Drag and drop functionality
+  // Drag and drop functionality
   const dropArea = document.getElementById('drop-area');
   const fileInput = document.getElementById('eventImage');
   const preview = document.getElementById('imagePreview');
@@ -133,7 +133,7 @@
     }
   });
 
-  // ✅ Preview image
+  // Preview image
   function handleFile() {
     const file = fileInput.files[0];
     if (!file) return;
@@ -146,7 +146,7 @@
     reader.readAsDataURL(file);
   }
 
-  // ✅ Form submission
+  // Form submission
   document.getElementById('event-form').addEventListener('submit', async function(e) {
     e.preventDefault();
 

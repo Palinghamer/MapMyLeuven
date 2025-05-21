@@ -47,7 +47,6 @@ function addNavLinkListeners() {
 
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // We don't need to prevent default since we want page navigation
             // Remove active class from all links
             navLinks.forEach(item => {
                 item.classList.remove('active');
@@ -101,7 +100,7 @@ function initCarousel() {
         if (currentSlide > 0) {
             currentSlide--;
         } else {
-            currentSlide = totalSlides - 1; // Loop to the end
+            currentSlide = totalSlides - 1;
         }
         updateCarousel();
     });
@@ -111,7 +110,7 @@ function initCarousel() {
         if (currentSlide < totalSlides - 1) {
             currentSlide++;
         } else {
-            currentSlide = 0; // Loop to the beginning
+            currentSlide = 0;
         }
         updateCarousel();
     });
