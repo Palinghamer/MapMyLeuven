@@ -8,7 +8,7 @@ const { CloudinaryStorage } = require("multer-storage-cloudinary");
 
 const router = express.Router();
 
-// For Cloudinary:
+
 cloudinary.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
     api_key: process.env.CLOUDINARY_API_KEY,
@@ -25,20 +25,16 @@ const cloudinaryStorage = new CloudinaryStorage({
 
 const upload = multer({ storage: cloudinaryStorage });
 
-// POST /events - Create a new event
 router.post('/', upload.single('image'), async (req, res) => {
     try {
         const { title, date, time, location, price, category, description } = req.body;
 
-        // Step 1: Geocode the address
         const coordinates = await geocodeAddress(location);
 
-        // Step 2: If geocoding failed, abort
         if (!coordinates) {
             return res.status(400).json({ error: "Could not geocode the location. Please check the address." });
         }
 
-        // Step 3: Create the new event with correct location object
         const newEvent = new Event({
             title,
             date,
@@ -53,16 +49,15 @@ router.post('/', upload.single('image'), async (req, res) => {
             imageUrl: req.file?.path || null
         });
 
-        // Step 4: Save and respond
         await newEvent.save();
         res.status(201).json(newEvent);
     } catch (error) {
-        console.error('❌ Event creation error:', error);
+        console.error('Event creation error:', error);
         res.status(400).json({ error: error.message });
     }
 });
 
-// GET /events - Get all events (with optional category filtering)
+
 router.get('/', async (req, res, next) => {
     try {
         const filter = {};
@@ -76,7 +71,7 @@ router.get('/', async (req, res, next) => {
     }
 });
 
-// ✅ GET /events/:id - Get event by ID
+
 router.get('/:id', async (req, res) => {
     try {
         console.log('Fetching event with ID:', req.params.id);
@@ -87,7 +82,7 @@ router.get('/:id', async (req, res) => {
         }
         res.json(event);
     } catch (err) {
-        console.error('❌ Error fetching event by ID:', err);
+        console.error('Error fetching event by ID:', err);
         res.status(500).json({ error: 'Server error' });
     }
 });

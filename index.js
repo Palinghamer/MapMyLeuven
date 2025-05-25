@@ -12,12 +12,12 @@ app.use("/events", eventRoutes);
 app.use("/uploads", express.static("uploads"));
 
 mongoose.connect(process.env.MONGO_URI, {
-    // options if needed
+
 })
     .then(() => console.log("Connected to MongoDB"))
     .catch(err => console.error(err));
 
 app.listen(3000, () => console.log("Server running on port 3000"));
 app.get("/", (req, res) => {
-    res.send("🎉 Map My Leuven backend is running!");
+    res.send("Map My Leuven backend is running!");
 });
