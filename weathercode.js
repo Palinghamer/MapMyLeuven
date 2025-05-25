@@ -50,7 +50,6 @@ function loadWeatherData(){
                 output += "It is going to be warm, so a jacket is not necessary. "
             }
 
-
             if (data.main.temp > 10 && data.main.temp <= 16) {
                 output += "Bring a light jacket, just in case. "
             }

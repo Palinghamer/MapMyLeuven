@@ -70,7 +70,7 @@
 }
 
 
-/* This is the part for the current weather message */
+/* This is the part for the current weather message. */
 .weather-content {
     display: flex;
     flex-direction: column;
