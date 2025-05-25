@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const response = await fetch("https://mapmyleuven.onrender.com/events");
         const data = await response.json();
         allEvents = data.events;
-        console.log("Fetched events:", allEvents);
+       // console.log("Fetched events:", allEvents); // bug check //
         renderEvents(allEvents);
     } catch (err) {
         console.error("Error fetching events:", err);

@@ -15,8 +15,8 @@ export function filterEvents(events, map) {
         const price = parseFloat(event.price?.replace(',', '.') || "0");
 
         const matchesCategory =
-            selectedCategory === 'all' ||
-            event.category?.toLowerCase() === selectedCategory.toLowerCase();
+            selectedCategory.trim().toLowerCase() === 'all' ||
+            event.category?.trim().toLowerCase() === selectedCategory.trim().toLowerCase();
 
         const matchesPrice = price >= minPrice && price <= maxPrice;
 

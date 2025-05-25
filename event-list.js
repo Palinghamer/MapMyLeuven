@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         const data = await response.json();
         allEvents = data.events;
         renderEventCards(allEvents);
+
     } catch (error) {
         console.error("Error loading event list:", error);
         eventListContainer.innerHTML = `<p class="text-danger">Failed to load events. Please try again later.</p>`;
